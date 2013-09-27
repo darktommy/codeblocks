@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1377875568 source:/home/max/codeblocks/avr/sdl-demo/main.cpp
+	<cstdlib>
+	<stdlib.h>
+	<SDL/SDL.h>
+

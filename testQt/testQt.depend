@@ -1,0 +1,838 @@
+# depslib dependency file v1.0
+1379943118 source:/home/max/codeblocks/testQt/main.cpp
+	<qapplication.h>
+	<qfont.h>
+	<qpushbutton.h>
+
+1370582219 /usr/include/qt4/Qt/qapplication.h
+	<QtCore/qcoreapplication.h>
+	<QtGui/qwindowdefs.h>
+	<QtCore/qpoint.h>
+	<QtCore/qsize.h>
+	<QtGui/qcursor.h>
+	<QtGui/qdesktopwidget.h>
+	<QtGui/qwidget.h>
+	<QtGui/qpalette.h>
+	<QtGui/qrgb.h>
+	<QtGui/qtransportauth_qws.h>
+
+1370582212 /usr/include/qt4//QtCore/qcoreapplication.h
+	<QtCore/qobject.h>
+	<QtCore/qcoreevent.h>
+	<QtCore/qeventloop.h>
+	<QtCore/qstringlist.h>
+
+1370582212 /usr/include/qt4//QtCore/qobject.h
+	<QtCore/qobjectdefs.h>
+	<QtCore/qstring.h>
+	<QtCore/qbytearray.h>
+	<QtCore/qlist.h>
+	<QtCore/qcoreevent.h>
+	<QtCore/qscopedpointer.h>
+
+1370582212 /usr/include/qt4//QtCore/qobjectdefs.h
+	<QtCore/qnamespace.h>
+
+1370582212 /usr/include/qt4//QtCore/qnamespace.h
+	<QtCore/qglobal.h>
+
+1370582212 /usr/include/qt4//QtCore/qglobal.h
+	<stddef.h>
+	<QtCore/qconfig.h>
+	<algorithm>
+	<AvailabilityMacros.h>
+	<utility>
+	<e32def.h>
+	<QtCore/qfeatures.h>
+
+1376659838 /usr/include/qt4//QtCore/qconfig.h
+
+1370582212 /usr/include/qt4//QtCore/qfeatures.h
+
+1370582212 /usr/include/qt4//QtCore/qstring.h
+	<QtCore/qchar.h>
+	<QtCore/qbytearray.h>
+	<QtCore/qatomic.h>
+	<QtCore/qnamespace.h>
+	<Qt3Support/q3cstring.h>
+	<string>
+	<stdarg.h>
+	<QtCore/qstringbuilder.h>
+
+1370582212 /usr/include/qt4//QtCore/qchar.h
+	<QtCore/qglobal.h>
+
+1370582212 /usr/include/qt4//QtCore/qbytearray.h
+	<QtCore/qatomic.h>
+	<QtCore/qnamespace.h>
+	<string.h>
+	<stdarg.h>
+	<QtCore/qstring.h>
+
+1370582212 /usr/include/qt4//QtCore/qatomic.h
+	<QtCore/qglobal.h>
+	<QtCore/qbasicatomic.h>
+
+1370582212 /usr/include/qt4//QtCore/qbasicatomic.h
+	<QtCore/qglobal.h>
+	<QtCore/qatomic_bootstrap.h>
+	<QtCore/qatomic_arch.h>
+
+1370582212 /usr/include/qt4//QtCore/qatomic_bootstrap.h
+
+1370582212 /usr/include/qt4//QtCore/qatomic_arch.h
+	"QtCore/qglobal.h"
+	"QtCore/qatomic_integrity.h"
+	"QtCore/qatomic_vxworks.h"
+	"QtCore/qatomic_alpha.h"
+	"QtCore/qatomic_arm.h"
+	"QtCore/qatomic_armv6.h"
+	"QtCore/qatomic_avr32.h"
+	"QtCore/qatomic_bfin.h"
+	"QtCore/qatomic_generic.h"
+	"QtCore/qatomic_i386.h"
+	"QtCore/qatomic_ia64.h"
+	"QtCore/qatomic_macosx.h"
+	"QtCore/qatomic_mips.h"
+	"QtCore/qatomic_parisc.h"
+	"QtCore/qatomic_powerpc.h"
+	"QtCore/qatomic_s390.h"
+	"QtCore/qatomic_sparc.h"
+	"QtCore/qatomic_windows.h"
+	"QtCore/qatomic_windowsce.h"
+	"QtCore/qatomic_x86_64.h"
+	"QtCore/qatomic_symbian.h"
+	"QtCore/qatomic_sh.h"
+	"QtCore/qatomic_sh4a.h"
+	"QtCore/qatomic_generic.h"
+
+1370582212 /usr/include/qt4//QtCore/qatomic_integrity.h
+	<INTEGRITY.h>
+
+1370582212 /usr/include/qt4//QtCore/qatomic_vxworks.h
+	<QtCore/qatomic_powerpc.h>
+	<vxWorksCommon.h>
+	<taskLib.h>
+
+1370582212 /usr/include/qt4//QtCore/qatomic_powerpc.h
+
+1370582212 /usr/include/qt4//QtCore/qatomic_alpha.h
+
+1370582212 /usr/include/qt4//QtCore/qatomic_arm.h
+	"QtCore/qatomic_armv7.h"
+	"QtCore/qatomic_armv6.h"
+	"QtCore/qatomic_armv5.h"
+
+1370582212 /usr/include/qt4//QtCore/qatomic_armv7.h
+	"QtCore/qatomic_armv6.h"
+
+1370582212 /usr/include/qt4//QtCore/qatomic_armv6.h
+
+1370582212 /usr/include/qt4//QtCore/qatomic_armv5.h
+
+1370582212 /usr/include/qt4//QtCore/qatomic_avr32.h
+
+1370582212 /usr/include/qt4//QtCore/qatomic_bfin.h
+	<asm/fixed_code.h>
+
+1370582212 /usr/include/qt4//QtCore/qatomic_generic.h
+
+1370582212 /usr/include/qt4//QtCore/qatomic_i386.h
+
+1370582212 /usr/include/qt4//QtCore/qatomic_ia64.h
+	<ia64intrin.h>
+	<ia64/sys/inline.h>
+
+1370582212 /usr/include/qt4//QtCore/qatomic_macosx.h
+	<QtCore/qatomic_x86_64.h>
+	<QtCore/qatomic_i386.h>
+	<QtCore/qatomic_powerpc.h>
+
+1370582212 /usr/include/qt4//QtCore/qatomic_x86_64.h
+
+1370582212 /usr/include/qt4//QtCore/qatomic_mips.h
+
+1370582212 /usr/include/qt4//QtCore/qatomic_parisc.h
+
+1370582212 /usr/include/qt4//QtCore/qatomic_s390.h
+
+1370582212 /usr/include/qt4//QtCore/qatomic_sparc.h
+
+1370582212 /usr/include/qt4//QtCore/qatomic_windows.h
+	"QtCore/qatomic_i386.h"
+	"QtCore/qatomic_x86_64.h"
+	<winbase.h>
+
+1370582212 /usr/include/qt4//QtCore/qatomic_windowsce.h
+	<QtCore/qglobal.h>
+	"QtCore/qatomic_windows.h"
+
+1370582212 /usr/include/qt4//QtCore/qatomic_symbian.h
+	<QtCore/qglobal.h>
+	<e32std.h>
+
+1370582212 /usr/include/qt4//QtCore/qatomic_sh.h
+
+1370582212 /usr/include/qt4//QtCore/qatomic_sh4a.h
+
+1379250097 /usr/include/string.h
+	<features.h>
+	<stddef.h>
+	<xlocale.h>
+	<bits/string.h>
+	<bits/string2.h>
+	<bits/string3.h>
+
+1379250092 /usr/include/features.h
+	<stdc-predef.h>
+	<sys/cdefs.h>
+	<gnu/stubs.h>
+
+1379250092 /usr/include/stdc-predef.h
+
+1379250099 /usr/include/sys/cdefs.h
+	<features.h>
+	<bits/wordsize.h>
+
+1379250096 /usr/include/bits/wordsize.h
+
+1379250092 /usr/include/gnu/stubs.h
+	<gnu/stubs-32.h>
+	<gnu/stubs-64.h>
+	<gnu/stubs-x32.h>
+
+1379250139 /usr/include/gnu/stubs-32.h
+
+1379250092 /usr/include/xlocale.h
+
+1379250097 /usr/include/bits/string.h
+
+1379250097 /usr/include/bits/string2.h
+	<endian.h>
+	<bits/types.h>
+	<stdlib.h>
+
+1379250097 /usr/include/endian.h
+	<features.h>
+	<bits/endian.h>
+	<bits/byteswap.h>
+
+1379250097 /usr/include/bits/endian.h
+
+1379250097 /usr/include/bits/byteswap.h
+	<features.h>
+	<bits/types.h>
+	<bits/wordsize.h>
+	<bits/byteswap-16.h>
+
+1379250098 /usr/include/bits/types.h
+	<features.h>
+	<bits/wordsize.h>
+	<bits/typesizes.h>
+
+1379250098 /usr/include/bits/typesizes.h
+
+1379250097 /usr/include/bits/byteswap-16.h
+
+1379250096 /usr/include/stdlib.h
+	<features.h>
+	<stddef.h>
+	<bits/waitflags.h>
+	<bits/waitstatus.h>
+	<xlocale.h>
+	<sys/types.h>
+	<alloca.h>
+	<bits/stdlib-bsearch.h>
+	<bits/stdlib-float.h>
+	<bits/stdlib.h>
+	<bits/stdlib-ldbl.h>
+
+1379250098 /usr/include/bits/waitflags.h
+
+1379250098 /usr/include/bits/waitstatus.h
+	<endian.h>
+
+1379250098 /usr/include/sys/types.h
+	<features.h>
+	<bits/types.h>
+	<time.h>
+	<stddef.h>
+	<endian.h>
+	<sys/select.h>
+	<sys/sysmacros.h>
+	<bits/pthreadtypes.h>
+
+1379250098 /usr/include/time.h
+	<features.h>
+	<stddef.h>
+	<bits/time.h>
+	<bits/types.h>
+	<bits/types.h>
+	<bits/types.h>
+	<bits/types.h>
+	<bits/types.h>
+	<xlocale.h>
+
+1379250098 /usr/include/bits/time.h
+	<bits/types.h>
+	<bits/types.h>
+	<bits/timex.h>
+
+1379250098 /usr/include/bits/timex.h
+	<bits/types.h>
+
+1379250099 /usr/include/sys/select.h
+	<features.h>
+	<bits/types.h>
+	<bits/select.h>
+	<bits/sigset.h>
+	<time.h>
+	<bits/time.h>
+	<bits/select2.h>
+
+1379250099 /usr/include/bits/select.h
+	<bits/wordsize.h>
+
+1379250096 /usr/include/bits/sigset.h
+
+1379250099 /usr/include/bits/select2.h
+
+1379250098 /usr/include/sys/sysmacros.h
+	<features.h>
+
+1379250098 /usr/include/bits/pthreadtypes.h
+	<bits/wordsize.h>
+
+1379250096 /usr/include/alloca.h
+	<features.h>
+	<stddef.h>
+
+1379250096 /usr/include/bits/stdlib-bsearch.h
+
+1379250096 /usr/include/bits/stdlib-float.h
+
+1379250096 /usr/include/bits/stdlib.h
+
+1379250096 /usr/include/bits/stdlib-ldbl.h
+
+1379250097 /usr/include/bits/string3.h
+
+1370582218 /usr/include/qt4//Qt3Support/q3cstring.h
+	<QtCore/qbytearray.h>
+
+1370582212 /usr/include/qt4//QtCore/qstringbuilder.h
+	<QtCore/qstring.h>
+	<QtCore/qbytearray.h>
+	<QtCore/qmap.h>
+	<string.h>
+
+1370582212 /usr/include/qt4//QtCore/qmap.h
+	<QtCore/qatomic.h>
+	<QtCore/qiterator.h>
+	<QtCore/qlist.h>
+	<map>
+	<new>
+
+1370582212 /usr/include/qt4//QtCore/qiterator.h
+	<QtCore/qglobal.h>
+	<ciso646>
+
+1370582212 /usr/include/qt4//QtCore/qlist.h
+	<QtCore/qiterator.h>
+	<QtCore/qatomic.h>
+	<QtCore/qalgorithms.h>
+	<iterator>
+	<list>
+	<iterator>
+	<initializer_list>
+	<new>
+	<limits.h>
+	<string.h>
+
+1370582212 /usr/include/qt4//QtCore/qalgorithms.h
+	<QtCore/qglobal.h>
+
+1379250092 /usr/include/limits.h
+	<features.h>
+	<bits/wordsize.h>
+	<bits/posix1_lim.h>
+	<bits/posix2_lim.h>
+	<bits/xopen_lim.h>
+
+1379250098 /usr/include/bits/posix1_lim.h
+	<bits/local_lim.h>
+
+1379250098 /usr/include/bits/local_lim.h
+	<linux/limits.h>
+
+1376351521 /usr/include/linux/limits.h
+
+1379250098 /usr/include/bits/posix2_lim.h
+
+1379250092 /usr/include/bits/xopen_lim.h
+	<bits/stdio_lim.h>
+	<bits/wordsize.h>
+
+1379250096 /usr/include/bits/stdio_lim.h
+
+1370582212 /usr/include/qt4//QtCore/qcoreevent.h
+	<QtCore/qnamespace.h>
+	<QtCore/qbytearray.h>
+	<QtCore/qobjectdefs.h>
+
+1370582212 /usr/include/qt4//QtCore/qscopedpointer.h
+	<QtCore/qglobal.h>
+
+1370582212 /usr/include/qt4//QtCore/qeventloop.h
+	<QtCore/qobject.h>
+
+1370582212 /usr/include/qt4//QtCore/qstringlist.h
+	<QtCore/qalgorithms.h>
+	<QtCore/qdatastream.h>
+	<QtCore/qlist.h>
+	<QtCore/qregexp.h>
+	<QtCore/qstring.h>
+	<QtCore/qstringmatcher.h>
+	<Qt3Support/q3valuelist.h>
+
+1370582212 /usr/include/qt4//QtCore/qdatastream.h
+	<QtCore/qscopedpointer.h>
+	<QtCore/qiodevice.h>
+	<QtCore/qglobal.h>
+
+1370582212 /usr/include/qt4//QtCore/qiodevice.h
+	<QtCore/qobject.h>
+	<QtCore/qobjectdefs.h>
+	<QtCore/qscopedpointer.h>
+	<QtCore/qstring.h>
+
+1370582212 /usr/include/qt4//QtCore/qregexp.h
+	<QtCore/qstring.h>
+	<new>
+
+1370582212 /usr/include/qt4//QtCore/qstringmatcher.h
+	<QtCore/qstring.h>
+
+1370582218 /usr/include/qt4//Qt3Support/q3valuelist.h
+	<QtCore/qalgorithms.h>
+	<QtCore/qdatastream.h>
+	<QtCore/qlinkedlist.h>
+	<QtCore/qlist.h>
+	<iterator>
+	<list>
+
+1370582212 /usr/include/qt4//QtCore/qlinkedlist.h
+	<QtCore/qiterator.h>
+	<QtCore/qatomic.h>
+	<iterator>
+	<list>
+
+1370582219 /usr/include/qt4//QtGui/qwindowdefs.h
+	<QtCore/qobjectdefs.h>
+	<QtCore/qnamespace.h>
+	<QtGui/qmacdefines_mac.h>
+	<QtGui/qwindowdefs_win.h>
+
+1370582219 /usr/include/qt4//QtGui/qmacdefines_mac.h
+	<QtCore/qglobal.h>
+	<Cocoa/Cocoa.h>
+
+1370582219 /usr/include/qt4//QtGui/qwindowdefs_win.h
+	<QtCore/qglobal.h>
+
+1370582212 /usr/include/qt4//QtCore/qpoint.h
+	<QtCore/qnamespace.h>
+
+1370582212 /usr/include/qt4//QtCore/qsize.h
+	<QtCore/qnamespace.h>
+
+1370582219 /usr/include/qt4//QtGui/qcursor.h
+	<QtCore/qpoint.h>
+	<QtGui/qwindowdefs.h>
+
+1370582219 /usr/include/qt4//QtGui/qdesktopwidget.h
+	<QtGui/qwidget.h>
+
+1370582219 /usr/include/qt4//QtGui/qwidget.h
+	<QtCore/qconfig.h>
+	<QtGui/qwindowdefs.h>
+	<QtCore/qobject.h>
+	<QtCore/qmargins.h>
+	<QtGui/qpaintdevice.h>
+	<QtGui/qpalette.h>
+	<QtGui/qfont.h>
+	<QtGui/qfontmetrics.h>
+	<QtGui/qfontinfo.h>
+	<QtGui/qsizepolicy.h>
+	<QtGui/qregion.h>
+	<QtGui/qbrush.h>
+	<QtGui/qcursor.h>
+	<QtGui/qkeysequence.h>
+	<QtGui/qplatformwindowformat_qpa.h>
+	<QtGui/qevent.h>
+
+1370582212 /usr/include/qt4//QtCore/qmargins.h
+	<QtCore/qnamespace.h>
+
+1370582219 /usr/include/qt4//QtGui/qpaintdevice.h
+	<QtGui/qwindowdefs.h>
+	<QtCore/qrect.h>
+
+1370582212 /usr/include/qt4//QtCore/qrect.h
+	<QtCore/qsize.h>
+	<QtCore/qpoint.h>
+
+1370582219 /usr/include/qt4//QtGui/qpalette.h
+	<QtGui/qwindowdefs.h>
+	<QtGui/qcolor.h>
+	<QtGui/qbrush.h>
+
+1370582219 /usr/include/qt4//QtGui/qcolor.h
+	<QtGui/qrgb.h>
+	<QtCore/qnamespace.h>
+	<QtCore/qstringlist.h>
+
+1370582219 /usr/include/qt4//QtGui/qrgb.h
+	<QtCore/qglobal.h>
+
+1370582219 /usr/include/qt4//QtGui/qbrush.h
+	<QtCore/qpair.h>
+	<QtCore/qpoint.h>
+	<QtCore/qvector.h>
+	<QtCore/qscopedpointer.h>
+	<QtGui/qcolor.h>
+	<QtGui/qmatrix.h>
+	<QtGui/qtransform.h>
+	<QtGui/qimage.h>
+	<QtGui/qpixmap.h>
+
+1370582212 /usr/include/qt4//QtCore/qpair.h
+	<QtCore/qdatastream.h>
+
+1370582212 /usr/include/qt4//QtCore/qvector.h
+	<QtCore/qiterator.h>
+	<QtCore/qatomic.h>
+	<QtCore/qalgorithms.h>
+	<QtCore/qlist.h>
+	<iterator>
+	<vector>
+	<stdlib.h>
+	<string.h>
+	<initializer_list>
+	<QtCore/QPointF>
+	<QtCore/QPoint>
+
+1370582201 /usr/include/qt4//QtCore/QPointF
+	"qpoint.h"
+
+1370582201 /usr/include/qt4//QtCore/QPoint
+	"qpoint.h"
+
+1370582219 /usr/include/qt4//QtGui/qmatrix.h
+	<QtGui/qpolygon.h>
+	<QtGui/qregion.h>
+	<QtGui/qwindowdefs.h>
+	<QtCore/qline.h>
+	<QtCore/qpoint.h>
+	<QtCore/qrect.h>
+	<QtGui/qwmatrix.h>
+
+1370582219 /usr/include/qt4//QtGui/qpolygon.h
+	<QtCore/qvector.h>
+	<QtCore/qpoint.h>
+	<QtCore/qrect.h>
+
+1370582219 /usr/include/qt4//QtGui/qregion.h
+	<QtCore/qatomic.h>
+	<QtCore/qrect.h>
+	<QtGui/qwindowdefs.h>
+	<QtCore/qdatastream.h>
+
+1370582212 /usr/include/qt4//QtCore/qline.h
+	<QtCore/qpoint.h>
+
+1370582219 /usr/include/qt4//QtGui/qwmatrix.h
+	<QtGui/qmatrix.h>
+
+1370582219 /usr/include/qt4//QtGui/qtransform.h
+	<QtGui/qmatrix.h>
+	<QtGui/qpainterpath.h>
+	<QtGui/qpolygon.h>
+	<QtGui/qregion.h>
+	<QtGui/qwindowdefs.h>
+	<QtCore/qline.h>
+	<QtCore/qpoint.h>
+	<QtCore/qrect.h>
+
+1370582219 /usr/include/qt4//QtGui/qpainterpath.h
+	<QtGui/qmatrix.h>
+	<QtCore/qglobal.h>
+	<QtCore/qrect.h>
+	<QtCore/qline.h>
+	<QtCore/qvector.h>
+	<QtCore/qscopedpointer.h>
+
+1370582219 /usr/include/qt4//QtGui/qimage.h
+	<QtGui/qtransform.h>
+	<QtGui/qpaintdevice.h>
+	<QtGui/qrgb.h>
+	<QtCore/qbytearray.h>
+	<QtCore/qrect.h>
+	<QtCore/qstring.h>
+
+1370582219 /usr/include/qt4//QtGui/qpixmap.h
+	<QtGui/qpaintdevice.h>
+	<QtGui/qcolor.h>
+	<QtCore/qnamespace.h>
+	<QtCore/qstring.h>
+	<QtCore/qsharedpointer.h>
+	<QtGui/qimage.h>
+	<QtGui/qtransform.h>
+
+1370582212 /usr/include/qt4//QtCore/qsharedpointer.h
+	<QtCore/qglobal.h>
+	<QtCore/qatomic.h>
+	<QtCore/qshareddata.h>
+	<QtCore/qsharedpointer_impl.h>
+
+1370582212 /usr/include/qt4//QtCore/qshareddata.h
+	<QtCore/qglobal.h>
+	<QtCore/qatomic.h>
+
+1370582212 /usr/include/qt4//QtCore/qsharedpointer_impl.h
+	<new>
+	<QtCore/qatomic.h>
+	<QtCore/qobject.h>
+
+1370582219 /usr/include/qt4//QtGui/qfont.h
+	<QtGui/qwindowdefs.h>
+	<QtCore/qstring.h>
+	<QtCore/qsharedpointer.h>
+
+1370582219 /usr/include/qt4//QtGui/qfontmetrics.h
+	<QtGui/qfont.h>
+	<QtCore/qsharedpointer.h>
+	<QtCore/qrect.h>
+
+1370582219 /usr/include/qt4//QtGui/qfontinfo.h
+	<QtGui/qfont.h>
+	<QtCore/qsharedpointer.h>
+
+1370582219 /usr/include/qt4//QtGui/qsizepolicy.h
+	<QtCore/qobject.h>
+
+1370582219 /usr/include/qt4//QtGui/qkeysequence.h
+	<QtCore/qnamespace.h>
+	<QtCore/qstring.h>
+
+1370582219 /usr/include/qt4//QtGui/qplatformwindowformat_qpa.h
+	<QtGui/QPlatformWindow>
+
+1370582201 /usr/include/qt4//QtGui/QPlatformWindow
+	"qplatformwindow_qpa.h"
+
+1370582219 /usr/include/qt4//QtGui/qplatformwindow_qpa.h
+	<QtCore/qscopedpointer.h>
+	<QtCore/qrect.h>
+	<QtCore/qstring.h>
+	<QtGui/qwindowdefs.h>
+
+1370582219 /usr/include/qt4//QtGui/qevent.h
+	<QtGui/qwindowdefs.h>
+	<QtCore/qobject.h>
+	<QtGui/qregion.h>
+	<QtCore/qnamespace.h>
+	<QtCore/qstring.h>
+	<QtGui/qkeysequence.h>
+	<QtCore/qcoreevent.h>
+	<QtGui/qmime.h>
+	<QtGui/qdrag.h>
+	<QtCore/qvariant.h>
+	<QtCore/qmap.h>
+	<QtCore/qset.h>
+	<QtCore/qfile.h>
+
+1370582219 /usr/include/qt4//QtGui/qmime.h
+	<QtCore/qmimedata.h>
+	<QtCore/qvariant.h>
+
+1370582212 /usr/include/qt4//QtCore/qmimedata.h
+	<QtCore/qvariant.h>
+	<QtCore/qobject.h>
+
+1370582212 /usr/include/qt4//QtCore/qvariant.h
+	<QtCore/qatomic.h>
+	<QtCore/qbytearray.h>
+	<QtCore/qlist.h>
+	<QtCore/qmetatype.h>
+	<QtCore/qmap.h>
+	<QtCore/qhash.h>
+	<QtCore/qstring.h>
+
+1370582212 /usr/include/qt4//QtCore/qmetatype.h
+	<QtCore/qglobal.h>
+	<QtCore/qatomic.h>
+	<QtCore/qdatastream.h>
+
+1370582212 /usr/include/qt4//QtCore/qhash.h
+	<QtCore/qatomic.h>
+	<QtCore/qchar.h>
+	<QtCore/qiterator.h>
+	<QtCore/qlist.h>
+	<QtCore/qpair.h>
+
+1370582219 /usr/include/qt4//QtGui/qdrag.h
+	<QtCore/qobject.h>
+
+1370582212 /usr/include/qt4//QtCore/qset.h
+	<QtCore/qhash.h>
+
+1370582212 /usr/include/qt4//QtCore/qfile.h
+	<QtCore/qiodevice.h>
+	<QtCore/qstring.h>
+	<stdio.h>
+	<f32file.h>
+
+1379250097 /usr/include/stdio.h
+	<features.h>
+	<stddef.h>
+	<bits/types.h>
+	<libio.h>
+	<stdarg.h>
+	<bits/stdio_lim.h>
+	<bits/sys_errlist.h>
+	<getopt.h>
+	<bits/stdio.h>
+	<bits/stdio2.h>
+	<bits/stdio-ldbl.h>
+
+1379250097 /usr/include/libio.h
+	<_G_config.h>
+	<stdarg.h>
+	<sys/cdefs.h>
+	<bits/stdio-lock.h>
+	<shlib-compat.h>
+	<bits/libio-ldbl.h>
+
+1379250097 /usr/include/_G_config.h
+	<bits/types.h>
+	<stddef.h>
+	<wchar.h>
+	<gconv.h>
+
+1379250097 /usr/include/wchar.h
+	<features.h>
+	<stdio.h>
+	<stdarg.h>
+	<bits/wchar.h>
+	<stddef.h>
+	<wctype.h>
+	<xlocale.h>
+	<xlocale.h>
+	<xlocale.h>
+	<wctype.h>
+	<bits/wchar2.h>
+	<bits/wchar-ldbl.h>
+
+1379250097 /usr/include/bits/wchar.h
+
+1379250100 /usr/include/wctype.h
+	<features.h>
+	<bits/types.h>
+	<wchar.h>
+	<endian.h>
+	<xlocale.h>
+
+1379250097 /usr/include/bits/wchar2.h
+
+1379250097 /usr/include/bits/wchar-ldbl.h
+
+1379250092 /usr/include/gconv.h
+	<features.h>
+	<wchar.h>
+	<stddef.h>
+
+1379250097 /usr/include/bits/stdio-lock.h
+	<bits/libc-lock.h>
+	<lowlevellock.h>
+
+1379250092 /usr/include/bits/libc-lock.h
+	<pthread.h>
+	<stddef.h>
+	"libc-lockP.h"
+
+1379250134 /usr/include/pthread.h
+	<features.h>
+	<endian.h>
+	<sched.h>
+	<time.h>
+	<bits/pthreadtypes.h>
+	<bits/setjmp.h>
+	<bits/wordsize.h>
+
+1379250098 /usr/include/sched.h
+	<features.h>
+	<bits/types.h>
+	<stddef.h>
+	<time.h>
+	<bits/sched.h>
+
+1379250098 /usr/include/bits/sched.h
+
+1379250096 /usr/include/bits/setjmp.h
+	<bits/wordsize.h>
+
+1379250097 /usr/include/bits/libio-ldbl.h
+
+1379250097 /usr/include/bits/sys_errlist.h
+
+1379250098 /usr/include/getopt.h
+	<ctype.h>
+
+1379250094 /usr/include/ctype.h
+	<features.h>
+	<bits/types.h>
+	<endian.h>
+	<xlocale.h>
+
+1379250097 /usr/include/bits/stdio.h
+
+1379250097 /usr/include/bits/stdio2.h
+
+1379250097 /usr/include/bits/stdio-ldbl.h
+
+1370582219 /usr/include/qt4//QtGui/qtransportauth_qws.h
+	<QtCore/qglobal.h>
+	<QtCore/qobject.h>
+	<QtCore/qhash.h>
+	<QtCore/qstring.h>
+	<QtCore/qbuffer.h>
+	<QtCore/qpointer.h>
+	<sys/types.h>
+
+1370582212 /usr/include/qt4//QtCore/qbuffer.h
+	<QtCore/qiodevice.h>
+	<QtCore/qbytearray.h>
+
+1370582212 /usr/include/qt4//QtCore/qpointer.h
+	<QtCore/qobject.h>
+
+1370582219 /usr/include/qt4/Qt/qfont.h
+	<QtGui/qwindowdefs.h>
+	<QtCore/qstring.h>
+	<QtCore/qsharedpointer.h>
+
+1370582219 /usr/include/qt4/Qt/qpushbutton.h
+	<QtGui/qabstractbutton.h>
+
+1370582219 /usr/include/qt4//QtGui/qabstractbutton.h
+	<QtGui/qicon.h>
+	<QtGui/qkeysequence.h>
+	<QtGui/qwidget.h>
+
+1370582219 /usr/include/qt4//QtGui/qicon.h
+	<QtCore/qglobal.h>
+	<QtCore/qsize.h>
+	<QtCore/qlist.h>
+	<QtGui/qpixmap.h>
+

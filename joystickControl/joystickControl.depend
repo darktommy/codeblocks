@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1378579800 source:/home/max/codeblocks/joystickControl/main.cpp
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	<string>
+	"rs232.h"
+
+1362214448 source:/home/max/codeblocks/joystickControl/rs232.c
+	"rs232.h"
+
+1362214431 /home/max/codeblocks/joystickControl/rs232.h
+	<stdio.h>
+	<string.h>
+	<termios.h>
+	<sys/ioctl.h>
+	<unistd.h>
+	<fcntl.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<limits.h>
+	<windows.h>
+

@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1362214448 source:/home/max/codeblocks/testSerial/rs232.c
+	"rs232.h"
+
+1362214431 /home/max/codeblocks/testSerial/rs232.h
+	<stdio.h>
+	<string.h>
+	<termios.h>
+	<sys/ioctl.h>
+	<unistd.h>
+	<fcntl.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<limits.h>
+	<windows.h>
+
+1377901563 source:/home/max/codeblocks/testSerial/main.cpp
+	<iostream>
+	<stdio.h>
+	<unistd.h>
+	"rs232.h"
+
