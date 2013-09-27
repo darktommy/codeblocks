@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1380305459 source:/home/max/codeblocks/avr/brushless88/main.c
+	<avr/io.h>
+	"serial.h"
+
+1380237884 /home/max/codeblocks/avr/brushless88/serial.h
+	<avr/io.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	<string.h>
+	<stdlib.h>
+	<ctype.h>
+	<stdio.h>
+	<avr/io.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	<string.h>
+	<stdlib.h>
+	<ctype.h>
+	<stdio.h>
+
+1380237672 source:/home/max/codeblocks/avr/brushless88/serial.c
+	"serial.h"
+	"serial.h"
+
