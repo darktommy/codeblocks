@@ -33,8 +33,12 @@ volatile uint8_t pwmCounter;
 volatile uint8_t t1,t12;
 volatile uint8_t v1,v2,v0;
 
-volatile uint8_t userDelay;
+volatile uint8_t userSpeed;
 volatile uint8_t direction;
+
+volatile uint8_t rCounter;
+
+void setElectricalAngle(uint16_t);
 
 //прерывание по переполнению счетчика
 ISR(TIMER0_OVF_vect)
@@ -64,10 +68,19 @@ ISR(TIMER0_OVF_vect)
 
     OUTPUT = output; // выводим всё в порт
     pwmCounter++;
+}
 
+ISR(TIMER2_OVF_vect)
+{
+    if(rCounter == userSpeed)
+    {
+        userAngle += 5;
+        setElectricalAngle(userAngle);
+        rCounter = 0;
+        return;
+    }
 
-
-
+    rCounter++;
 }
 
 
@@ -82,8 +95,6 @@ void setElectricalAngle(uint16_t phi)/*phi = [0..359]*/
 
     if(imod == 0) // частный случай, если угол кратен 60
     {
-//        t1 = 32;
-//        t12 = 64;
         t1 = 38;//t1 никогда не наступит
         t12 = 32;
 
@@ -179,7 +190,13 @@ void setupTimer()
     TCCR0A = 0;
     TCCR0B = (1 << CS00);
 
-    userDelay = 100;
+    userSpeed = 255;
+    rCounter = 0;
+
+    TIMSK2 = (1 << TOIE1);
+    TCNT2 = 0;
+    TCCR2A = 0;
+    TCCR2B = (1 << CS20); //prescaler = 1
 
 }
 
@@ -211,8 +228,8 @@ int main(void)
         setElectricalAngle(num);
     }
 */
-/*
-    serialWrite("hello max!1 - f, 2 - b, 3 ++,4 --,5 - man/auto \n");
+
+    serialWrite("hello max!1 - f, 2 - b, 3 ++,4 --\n");
     while(1)
     {
         if(serialAvailable()>0)
@@ -230,46 +247,21 @@ int main(void)
                     direction = 2;
                 break;
             case '3':
-                if(userDelay>10)
-                    userDelay--;
+                if(userSpeed > 1)
+                    userSpeed--;
                 break;
             case '4':
-                if(userDelay<100)
-                    userDelay++;
-                break;
-            case '5':
-                if(direction)
-                    direction = 0;
-                else
-                    direction = 1;
+                if(userSpeed<255)
+                    userSpeed++;
                 break;
 
             }
         }
-        else
-        {
-            switch(direction)
-            {
-            case 0:
-                break;
-            case 1:
-                userAngle++;
-                setAngle(userAngle);
-                _delay_ms(userDelay);
-                break;
-            case 2:
-                userAngle--;
-                setAngle(userAngle);
-                _delay_ms(userDelay);
-                break;
-            }
-        }
-
 
     }
-*/
 
 
+/*
     uint16_t i=0;
     while(1)
     {
@@ -280,7 +272,7 @@ int main(void)
             _delay_ms(2);
         }
     }
-
+*/
     serialEnd();
 
 
