@@ -22,7 +22,7 @@
 #define SPEED250000 (F_CPU/16/250000-1)
 
 
-#define BUFFER_LEN 64
+#define BUFFER_LEN 128
 
 #if defined(__AVR_ATmega8__) || defined(__AVR_ATmega16__)
 #define WAIT_FOR_WRITE while (!(UCSRA & (1 << UDRE))) {}

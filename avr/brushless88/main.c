@@ -2,6 +2,7 @@
  */
 
 #include <avr/io.h>
+#include <avr/pgmspace.h>
 #include "serial.h"
 
 #define OUTPUT PORTC
@@ -13,15 +14,24 @@
 #define DELAY 20
 #define DELAY_ON_OFF 20
 
-uint8_t vectA[]={220, 239, 250, 254, 250, 239, 220, 195, 163, 127, 87, 44, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 44, 87, 127,163, 195, 220, 239, 250, 254, 250, 239, 220};
-uint8_t vectB[]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 44, 87, 127, 163, 195, 220, 239, 250, 254, 250, 239, 220, 239, 250, 254,250, 239, 220, 195, 163, 127, 87, 44, 0};
-uint8_t vectC[]={0, 44, 87, 127, 163, 195, 220, 239, 250, 254, 250, 239, 220, 239, 250, 254, 250, 239, 220, 195, 163, 127, 87, 44, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+uint8_t outArray[] = {0b100,0b110,0b010,0b011,0b001,0b101,0b100}; //6 базовых векторов
 
-volatile uint8_t A,B,C;
+const uint8_t pwmArray1[] PROGMEM= {32,32,31,31,31,30,30,30,29,29,28,28,27,27,27,
+26,26,25,25,24,24,23,23,22,22,21,21,20,20,19,18,18,17,17,16,16,15,14,14,13,13,12,
+11,11,10,10,9,8,8,7,6,6,5,5,4,3,3,2,1,1}; //массив кодов t1
+
+const uint8_t pwmArray12[] PROGMEM= {32,32,33,33,33,33,34,34,34,34,35,35,35,35,36,
+36,36,36,36,36,36,36,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,36,36,36,36,
+36,36,36,36,35,35,35,35,34,34,34,34,33,33,33,33,32}; //массив кодов t1+2
+
+uint8_t zeroArray[] = {0, 0, 0, 7, 0, 7, 7};
 
 volatile uint16_t angleIndex;
-volatile uint16_t userAngle; /*from 0 to 1440 */
+volatile uint16_t userAngle; /*from 0 to 359 */
 volatile uint8_t pwmCounter;
+
+volatile uint8_t t1,t12;
+volatile uint8_t v1,v2,v0;
 
 volatile uint8_t userDelay;
 volatile uint8_t direction;
@@ -31,65 +41,71 @@ ISR(TIMER0_OVF_vect)
 {
     uint8_t output = OUTPUT;
 
+    if(pwmCounter == 37)
+    {
+        pwmCounter = 0;
+    }
+
     if (pwmCounter == 0) //цикл начинается, установим всё в 1
     {
-        output |= (1 << A_CHANNEL) | (1<< B_CHANNEL) | (1 << C_CHANNEL);
+        output = v1;
     }
 
-    if (pwmCounter == A)
+    if(pwmCounter == t1)
     {
-        output &= ~(1 << A_CHANNEL);
+        output = v2;
     }
-    if (pwmCounter == B)
+
+    if(pwmCounter == t12)
     {
-        output &= ~(1 << B_CHANNEL);
+        output = v0;
     }
-    if (pwmCounter == C)
-    {
-        output &= ~(1 << C_CHANNEL);
-    }
+
 
     OUTPUT = output; // выводим всё в порт
-
     pwmCounter++;
+
+
+
 
 }
 
 
 void setElectricalAngle(uint16_t phi)/*phi = [0..359]*/
 {
-    uint8_t i;
+
     if (phi>=360)
         phi %= 360;
 
-    angleIndex = phi / 10;
+    uint8_t imod  = phi % 60;
+    uint8_t i = phi / 60;
 
-    //интерполяция:
-    if((i = phi % 10) == 0)
+    if(imod == 0) // частный случай, если угол кратен 60
     {
-        A = vectA[angleIndex];
-        B = vectB[angleIndex];
-        C = vectC[angleIndex];
-    }
-    else
-    {
-        uint8_t A1,B1,C1,A2,B2,C2;
+//        t1 = 32;
+//        t12 = 64;
+        t1 = 38;//t1 никогда не наступит
+        t12 = 32;
 
-        A1 = vectA[angleIndex];
-        B1 = vectB[angleIndex];
-        C1 = vectC[angleIndex];
-
-        A2 = vectA[angleIndex+1];
-        B2 = vectB[angleIndex+1];
-        C2 = vectC[angleIndex+1];
-
-        A = A1 + (uint8_t)((A2-A1)*((float)i/10));
-        B = B1 + (uint8_t)((B2-B1)*((float)i/10));
-        C = C1 + (uint8_t)((C2-C1)*((float)i/10));
+        v1 = v2 = outArray[i];
+        v0 = 0;
 
     }
+    else // в общем случае
+    {
+        t1 = pgm_read_byte(&pwmArray1[imod]);
+        t12 = pgm_read_byte(&pwmArray12[imod]);
+
+        v1 = outArray[i];
+        v2 = outArray[i+1];
+        v0 = zeroArray[v2];
+
+    }
+
+    pwmCounter = 0;
+    userAngle = phi;
 }
-
+/*
 void goCCW(uint16_t phi)
 {
     volatile int16_t tmp;
@@ -130,8 +146,9 @@ void goCW(uint16_t phi)
     userAngle = phi;
 }
 
-
-void setAngle(uint16_t phi)/*phi = [0..1440]*/
+*/
+/*
+void setAngle(uint16_t phi)
 {
     if(userAngle > phi)
     {
@@ -149,13 +166,13 @@ void setAngle(uint16_t phi)/*phi = [0..1440]*/
     }
 
 }
-
+*/
 void setupTimer()
 {
     //timer0
     pwmCounter = 0;
     userAngle = 0;
-    setAngle(userAngle);
+    setElectricalAngle(userAngle);
 
     TIMSK0 = (1<< TOIE0);
     TCNT0 = 0;
@@ -184,17 +201,16 @@ int main(void)
     setupTimer();
     sei();
 
-
+/*
     uint16_t num;
-
     while(1)
     {
         serialWaitUntil('\r');
         num = serialParseInt();
         serialClearBuffer();
-        setAngle(num);
+        setElectricalAngle(num);
     }
-
+*/
 /*
     serialWrite("hello max!1 - f, 2 - b, 3 ++,4 --,5 - man/auto \n");
     while(1)
@@ -253,18 +269,18 @@ int main(void)
     }
 */
 
-/*
+
     uint16_t i=0;
     while(1)
     {
 
-        for(i=0;;i+=60)
+        for(i=0;;i+=1)
         {
-            setAngle(i);
-            _delay_ms(500);
+            setElectricalAngle(i);
+            _delay_ms(2);
         }
     }
-*/
+
     serialEnd();
 
 
