@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1380577500 source:/home/max/codeblocks/avr/brushless88/main.c
+1381765089 source:/home/max/codeblocks/avr/brushless88/main.c
 	<avr/io.h>
 	<avr/pgmspace.h>
 	"serial.h"

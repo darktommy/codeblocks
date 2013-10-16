@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1380390483 source:/home/max/codeblocks/joystickControl/main.cpp
+1381073000 source:/home/max/codeblocks/joystickControl/main.cpp
 	"SDL/SDL.h"
 	"SDL/SDL_image.h"
 	<string>

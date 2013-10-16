@@ -15,7 +15,7 @@ const int SCREEN_BPP = 32;
 const int GAS_MAX=255;
 const int GAS_MIN=-255;
 const int ANGLE_MIN = 0;
-const int ANGLE_MAX = 180;
+const int ANGLE_MAX = 360;
 
 //The frame rate
 const int FRAMES_PER_SECOND = 20;
@@ -256,7 +256,9 @@ Dot::Dot()
 
 void Dot::sendCommand()
 {
+
     unsigned char buf[10];
+    /*
     int tmp_angle;
 
     unsigned short int checksum;
@@ -270,7 +272,13 @@ void Dot::sendCommand()
     buf[5] = 0x4F;
 
     RS232_SendBuf(portNum,buf,6);
-    printf("angle: %i\ngas: %i\n",tmp_angle,gas);
+    printf("angle: %i\ngas: %i\n",tmp_angle,gas);*/
+
+    unsigned short int tmp = (unsigned short int) angle;
+    memcpy(buf,(void*)&tmp,2);
+    RS232_SendBuf(portNum,buf,2);
+    printf("angle: %i buf: %X %X\n",angle,buf[0],buf[1]);
+
 }
 
 void Dot::handle_input()
@@ -284,6 +292,7 @@ void Dot::handle_input()
             //If the X axis changed
             if( event.jaxis.axis == 0 )
             {
+                /*
                 //If the X axis is neutral
                 if( ( event.jaxis.value > -546 ) && ( event.jaxis.value < 546 ) )
                 {
@@ -298,9 +307,16 @@ void Dot::handle_input()
                     angle = (int)((float)event.jaxis.value / 32767 * ((ANGLE_MAX-ANGLE_MIN)/2) + 90);
                     sendCommand();
                 }
+                */
+
+                x = (int)((float)event.jaxis.value / 32767 * 60);
+                angle = (int)((float)event.jaxis.value / 32767 * ((ANGLE_MAX-ANGLE_MIN)/2) + 180);
+                sendCommand();
+
 
 
             }
+            /*
             //If the Y axis changed
             else if( event.jaxis.axis == 5 )
             {
@@ -319,7 +335,7 @@ void Dot::handle_input()
                     sendCommand();
                 }
 
-            }
+            }*/
         }
     }
 }
