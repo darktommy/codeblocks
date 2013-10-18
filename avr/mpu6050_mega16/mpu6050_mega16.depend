@@ -1,0 +1,54 @@
+# depslib dependency file v1.0
+1382124331 source:/home/max/codeblocks/avr/mpu6050_mega16/mpu6050.c
+	<stdlib.h>
+	<string.h>
+	<avr/io.h>
+	<avr/pgmspace.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	"mpu6050.h"
+	<math.h>
+	"i2cmaster.h"
+
+1382124343 /home/max/codeblocks/avr/mpu6050_mega16/mpu6050.h
+	<avr/io.h>
+	"mpu6050registers.h"
+
+1365594978 /home/max/codeblocks/avr/mpu6050_mega16/mpu6050registers.h
+
+1110141598 /home/max/codeblocks/avr/mpu6050_mega16/i2cmaster.h
+	<i2cmaster.h>
+	<avr/io.h>
+
+1366002618 source:/home/max/codeblocks/avr/mpu6050_mega16/mpu6050dmp6.c
+	"mpu6050.h"
+	<avr/io.h>
+	<avr/pgmspace.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	<math.h>
+
+1382124863 source:/home/max/codeblocks/avr/mpu6050_mega16/serial.c
+	"serial.h"
+
+1382124881 /home/max/codeblocks/avr/mpu6050_mega16/serial.h
+	<avr/io.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	<string.h>
+	<stdlib.h>
+	<ctype.h>
+	<stdio.h>
+
+1382115423 source:/home/max/codeblocks/avr/mpu6050_mega16/twimaster.c
+	<inttypes.h>
+	<compat/twi.h>
+	"i2cmaster.h"
+
+1382124343 source:/home/max/codeblocks/avr/mpu6050_mega16/main.c
+	<avr/io.h>
+	<avr/pgmspace.h>
+	"serial.h"
+	"mpu6050.h"
+
