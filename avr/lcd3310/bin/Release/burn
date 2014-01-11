@@ -1,0 +1,2 @@
+#!/bin/bash
+avrdude -p m16 -c usbasp -U flash:w:lcd3310.hex

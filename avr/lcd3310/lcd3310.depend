@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1365157200 source:/home/max/codeblocks/lcd3310/main.c
+	<avr/io.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	"n3310.h"
+
+1362762423 /home/max/codeblocks/lcd3310/n3310.h
+
+1308868873 /home/max/codeblocks/lcd3310/picture.h
+
+1331676925 source:/home/max/codeblocks/lcd3310/n3310.c
+	<avr/io.h>
+	<string.h>
+	<avr/pgmspace.h>
+	<avr/interrupt.h>
+	"n3310.h"
+
+1365536263 source:d:\docs\codeblocks\lcd3310\main.c
+	<avr/io.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	"n3310.h"
+
+1362762423 d:\docs\codeblocks\lcd3310\n3310.h
+
+1331676925 source:d:\docs\codeblocks\lcd3310\n3310.c
+	<avr/io.h>
+	<string.h>
+	<avr/pgmspace.h>
+	<avr/interrupt.h>
+	"n3310.h"
+
