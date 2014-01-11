@@ -1,0 +1,1 @@
+-c usbasp -p atmega16 -U flash:w:${TARGET_OUTPUT_BASENAME}.hex

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1388574632 source:/home/max/codeblocks/dctf4d/hello.d
+	<std/stdio.d>
+	<std/algorithm.d>
+
