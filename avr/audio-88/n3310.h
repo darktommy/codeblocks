@@ -27,15 +27,16 @@
 #define LCD_PORT                   PORTB
 #define LCD_DDR                    DDRB
 
-/*
+
 //для atmega88
 // Распиновка порта
-#define LCD_DC_PIN                 PB4
-#define LCD_CE_PIN                 PB2
+#define LCD_DC_PIN                 PB0
+#define LCD_CE_PIN                 PB1
 #define SPI_MOSI_PIN               PB3   // SDIN дисплея обязательно подключаем к MOSI аппаратного SPI
-#define LCD_RST_PIN                PB1
+#define LCD_RST_PIN                PB2
 #define SPI_CLK_PIN                PB5   // SCLK дисплея обязательно подключаем к SCK аппаратного SPI
-*/
+
+/*
 //для atmega16
 // Распиновка порта
 #define LCD_DC_PIN                 PB0
@@ -43,7 +44,7 @@
 #define SPI_MOSI_PIN               PB5   // SDIN дисплея обязательно подключаем к MOSI аппаратного SPI
 #define LCD_RST_PIN                PB2
 #define SPI_CLK_PIN                PB7   // SCLK дисплея обязательно подключаем к SCK аппаратного SPI
-
+*/
 // Разрешение дисплея в пикселях
 #define LCD_X_RES                  84    // разрешение по горизонтали
 #define LCD_Y_RES                  48    // разрешение по вертикали

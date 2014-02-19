@@ -5,6 +5,8 @@
 	<avr/pgmspace.h>
 	"n3310.h"
 
+1331676925 
+
 1362762423 /home/max/codeblocks/lcd3310/n3310.h
 
 1308868873 /home/max/codeblocks/lcd3310/picture.h
@@ -29,5 +31,20 @@
 	<string.h>
 	<avr/pgmspace.h>
 	<avr/interrupt.h>
+	"n3310.h"
+
+1389437276 source:/home/max/codeblocks/avr/lcd3310/n3310.c
+	<avr/io.h>
+	<string.h>
+	<avr/pgmspace.h>
+	<avr/interrupt.h>
+	"n3310.h"
+
+1389439299 /home/max/codeblocks/avr/lcd3310/n3310.h
+
+1389432907 source:/home/max/codeblocks/avr/lcd3310/main.c
+	<avr/io.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
 	"n3310.h"
 
