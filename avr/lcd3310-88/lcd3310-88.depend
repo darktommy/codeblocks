@@ -1,0 +1,79 @@
+# depslib dependency file v1.0
+1365157200 source:/home/max/codeblocks/lcd3310/main.c
+	<avr/io.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	"n3310.h"
+
+1331676925 
+
+1362762423 /home/max/codeblocks/lcd3310/n3310.h
+
+1308868873 /home/max/codeblocks/lcd3310/picture.h
+
+1331676925 source:/home/max/codeblocks/lcd3310/n3310.c
+	<avr/io.h>
+	<string.h>
+	<avr/pgmspace.h>
+	<avr/interrupt.h>
+	"n3310.h"
+
+1365536263 source:d:\docs\codeblocks\lcd3310\main.c
+	<avr/io.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	"n3310.h"
+
+1362762423 d:\docs\codeblocks\lcd3310\n3310.h
+
+1331676925 source:d:\docs\codeblocks\lcd3310\n3310.c
+	<avr/io.h>
+	<string.h>
+	<avr/pgmspace.h>
+	<avr/interrupt.h>
+	"n3310.h"
+
+1389437276 source:/home/max/codeblocks/avr/lcd3310/n3310.c
+	<avr/io.h>
+	<string.h>
+	<avr/pgmspace.h>
+	<avr/interrupt.h>
+	"n3310.h"
+
+1389439299 /home/max/codeblocks/avr/lcd3310/n3310.h
+
+1389432907 source:/home/max/codeblocks/avr/lcd3310/main.c
+	<avr/io.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	"n3310.h"
+
+1389437276 source:/home/max/codeblocks/avr/lcd3310-88/n3310.c
+	<avr/io.h>
+	<string.h>
+	<avr/pgmspace.h>
+	<avr/interrupt.h>
+	"n3310.h"
+
+1389439983 /home/max/codeblocks/avr/lcd3310-88/n3310.h
+
+1392133309 source:/home/max/codeblocks/avr/lcd3310-88/main.c
+	<avr/io.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	"serial.h"
+	"n3310.h"
+
+1392133429 /home/max/codeblocks/avr/lcd3310-88/serial.h
+	<avr/io.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	<string.h>
+	<stdlib.h>
+	<ctype.h>
+	<stdio.h>
+
+1389431792 source:/home/max/codeblocks/avr/lcd3310-88/serial.c
+	"serial.h"
+
