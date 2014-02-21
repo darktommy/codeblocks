@@ -11,6 +11,27 @@
 uint16_t duration_cnt;
 uint8_t position;
 
+uint16_t melody[]=
+{
+E5,d16,
+D5,d16,
+F4d,d8,
+G4d,d8,
+C5d,d16,
+B4,d16,
+D4,d8,
+E4,d8,
+B4,d16,
+A4,d16,
+C4d,d8,
+E4,d8,
+A4,d4,
+PAUSE,d2,
+PAUSE,d2,
+END
+};
+
+
 
 void ChangeTone()
 {
