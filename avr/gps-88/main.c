@@ -2,10 +2,14 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/pgmspace.h>
-#include "serial.h"
-#include "nmea.h"
+
+#include "compilers_3.h"
+//#include "serial.h"
+#include <string.h>
+#include <stdlib.h>
+#include "softUart.h"
 #include "n3310.h"
-//#include "picture.h"
+
 
 typedef struct _data
 {
@@ -16,6 +20,41 @@ typedef struct _data
 
 data position;
 
+unsigned char hex2bin( char c )
+{
+  if( ( c >= 'A') && ( c <= 'F') ) {
+    return c - 'A';
+  }
+  else if( ( c >= 'a') && ( c <= 'f') ) {
+    return c - 'a';
+  }
+  else {
+    return c - '0';
+  }
+}
+
+
+uint8_t check_crc( char *buf )
+{
+  unsigned char crc = 0;
+  while( *buf != '*' ) {
+     crc ^= *buf++;
+  }
+
+  return ( ( crc & 0x0F ) == hex2bin( *(buf+2) ) ) &&
+         ( ( crc >> 4   ) == hex2bin( *(buf+1) ) );
+}
+
+uint8_t get_crc( char * buf)
+{
+    uint8_t crc = 0;
+    while( *buf != '*' ) {
+     crc ^= *buf++;
+    }
+    return crc;
+}
+
+
 char* next_field(char* buf)
 {
     while(*buf++ != ',')
@@ -24,12 +63,26 @@ char* next_field(char* buf)
     return buf;
 }
 
+
+
 uint8_t parse(char* buf, data* d)
 {
+    /*
     buf = strstr(buf, "GPGLL");
-    if( buf == 0 ) return -1;
+    if( buf == 0 ) return -1;*/
 
-    buf = next_field(buf); //first field
+    buf = strchr(buf, '$');
+    if(buf == 0) return -1;
+
+    buf++;
+
+    if(strncmp(buf, "GPGLL", 5) != 0) return -1;
+
+    if(!check_crc(buf))
+        return -1;
+
+
+    buf = next_field(buf);
     if(*buf != ',')
         (*d).latitude = atof(buf);
 
@@ -53,8 +106,6 @@ uint8_t parse(char* buf, data* d)
     else
         (*d).valid = 0;
 
-    //TODO: checksum
-
     return 0;
 
 }
@@ -62,59 +113,30 @@ uint8_t parse(char* buf, data* d)
 int main()
 {
 
-    serialInit(SPEED9600);
+    //serialInit(SPEED9600);
+    SUART_Init();//9600 8n1
     sei();
 
     LcdInit();
 
     char buf[256];
     char strbuf[50];
-    uint8_t buf_len;
 
     memset(buf,0,255);
     memset(strbuf,0,50);
-
+/*
+    //для аппаратного UART
     while(1)
     {
         if(serialAvailable()>0)
         {
-            /*memset(buf, 0, 256);
-
-            buf_len = serialReadUntil(buf, 255,'\r');
-            serialClearBuffer();
-
-            LcdClear();
-            LcdGotoXYFont(0,2);
-            itoa(buf_len,strbuf, 10);
-            LcdStr(FONT_1X, strbuf);
-
-            if(nmea_parser(buf) != -1)
-            {
-                if(nmea_rmc_data.valid)
-                {
-                    LcdGotoXYFont(0,0);
-                    dtostrf(nmea_rmc_data.latitude,2,2,strbuf);
-                    LcdStr(FONT_1X, (byte*)strbuf);
-                    memset(strbuf,0,50);
-                    LcdGotoXYFont(0,1);
-                    dtostrf(nmea_rmc_data.longitude,2,2,strbuf);
-                    LcdStr(FONT_1X, (byte*)strbuf);
-                }
-                else
-                {
-                    LcdGotoXYFont(0,0);
-                    LcdFStr(FONT_1X,(unsigned char*)PSTR("Invalid Data"));
-                }
-            }
-
-            LcdUpdate();*/
-
-            buf_len = serialReadUntil(buf, 255, '\r');
+            buf_len = serialReadUntil(buf, 255, '\n');
             buf[buf_len] = '\0';
             serialClearBuffer();
             if(parse(buf, &position) == 0)
             {
                 LcdClear();
+
                 dtostrf(position.latitude, 2,2,strbuf);
                 LcdGotoXYFont(0,0);
                 LcdStr(FONT_1X, (byte*)strbuf);
@@ -130,6 +152,49 @@ int main()
                 }
                 LcdUpdate();
 
+            }
+
+        }
+    }
+*/
+    //для программного UART
+    uint8_t bufcnt=0;
+    char c;
+    while(1)
+    {
+
+        if(SUART_Kbhit())
+        {
+            c = SUART_GetChar();
+            if (c == '\n' || c == '\r')
+            {
+                buf[bufcnt] = '\0';
+                bufcnt = 0;
+
+                if(parse(buf, &position) == 0)
+                {
+                    LcdClear();
+
+                    dtostrf(position.latitude, 2,2,strbuf);
+                    LcdGotoXYFont(0,0);
+                    LcdStr(FONT_1X, (byte*)strbuf);
+
+                    dtostrf(position.longtitude, 2,2,strbuf);
+                    LcdGotoXYFont(0,1);
+                    LcdStr(FONT_1X, (byte*)strbuf);
+
+                    if(position.valid != 1)
+                    {
+                        LcdGotoXYFont(0,5);
+                        LcdStr(FONT_1X,(byte*)"not ready");
+                    }
+                    LcdUpdate();
+                }
+            }
+            else
+            {
+                buf[bufcnt] = c;
+                bufcnt++;
             }
 
         }
