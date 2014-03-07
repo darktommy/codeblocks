@@ -23,7 +23,8 @@ uint8_t GSM_Test()
     _delay_ms(100);
     uint8_t len;
     char buf[40];
-    if(len = serialAvailable())
+    len = serialAvailable();
+    if(len)
     {
         serialRead(buf, len);
         buf[len] = 0;
@@ -62,7 +63,7 @@ void GSM_PowerOn()
 
 
 }
-/*
+
 uint8_t GSM_WaitResponse2(char* expectedStr)
 {
     char buf[100];
@@ -79,15 +80,18 @@ uint8_t GSM_WaitResponse2(char* expectedStr)
 
 uint8_t GSM_Test2()
 {
-    SUART_PutStrFl(PSTR("AT\r"));
+    SUART_PutStrFl((char*)PSTR("AT\r"));
     char buf[20];
     uint8_t buflen=0;
-
+    _delay_ms(100);
     while(SUART_Kbhit())
     {
-        buf[buflen++] = SUART_GetChar();
+        buf[buflen] = SUART_GetChar();
+        buflen++;
     }
     buf[buflen] = '\0';
+
+    SUART_FlushInBuf();
 
     if(strstr(buf,"OK") != NULL)
         return 1;
@@ -98,17 +102,15 @@ uint8_t GSM_Test2()
 
 void GSM_Init2()
 {
-    SUART_PutStrFl(PSTR("ATE0\r")); //echo off
+    SUART_PutStrFl((char*)PSTR("ATE0\r")); //echo off
     _delay_ms(300);
-    SUART_PutStrFl(PSTR("AT+CMGF=1\r"));//text mode
+    SUART_PutStrFl((char*)PSTR("AT+CMGF=1\r"));//text mode
     _delay_ms(300);
-    SUART_PutStrFl(PSTR("AT+IFC=1\r")); //flow control
-    _delay_ms(300);
-    SUART_PutStrFl(PSTR("AT+CPBS=\"SM\"\r")); //
-    _delay_ms(300);
-    SUART_PutStrFl(PSTR("AT+CNMI=1,2,2,1,0\r")); //чето там настраивается, сообщения походу не сохраняются. ну и ладно :)
-    _delay_ms(300);
-     SUART_FlushInBuf();
+    SUART_PutStrFl((char*)PSTR("AT+CLIP=1\r")); //включает АОН
+    _delay_ms(500);
+
+    SUART_FlushInBuf();
+
 }
-*/
+
 

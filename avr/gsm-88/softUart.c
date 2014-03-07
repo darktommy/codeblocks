@@ -183,7 +183,7 @@ char SUART_GetChar(void)
       if ( ++qout >= SUART_BUF_SIZE ){
          qout = 0;
       }
-   }while ((ch == 0x0A) || (ch == 0xC2));
+   }while ((ch == 0xC2));
 
    return ch;
 }

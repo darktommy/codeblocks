@@ -20,16 +20,24 @@ Archive member included because of file (symbol)
                               /usr/avr/lib/libc.a(strtod.o) (isspace)
 /usr/avr/lib/libc.a(memcpy_P.o)
                               obj/Release/n3310.o (memcpy_P)
+/usr/avr/lib/libc.a(strcat_P.o)
+                              obj/Release/main.o (strcat_P)
 /usr/avr/lib/libc.a(strcmp_P.o)
                               obj/Release/main.o (strcmp_P)
+/usr/avr/lib/libc.a(strcpy_P.o)
+                              obj/Release/main.o (strcpy_P)
 /usr/avr/lib/libc.a(strncasecmp_P.o)
                               /usr/avr/lib/libc.a(strtod.o) (strncasecmp_P)
 /usr/avr/lib/libc.a(memcpy.o)
                               obj/Release/serial.o (memcpy)
+/usr/avr/lib/libc.a(strcat.o)
+                              obj/Release/main.o (strcat)
 /usr/avr/lib/libc.a(strchr.o)
                               obj/Release/gps.o (strchr)
 /usr/avr/lib/libc.a(strlcpy.o)
                               obj/Release/gps.o (strlcpy)
+/usr/avr/lib/libc.a(strncat.o)
+                              obj/Release/main.o (strncat)
 /usr/avr/lib/libc.a(strncmp.o)
                               obj/Release/gps.o (strncmp)
 /usr/avr/lib/libc.a(strstr.o)
@@ -97,7 +105,7 @@ Common symbol       size              file
 
 errno               0x2               /usr/avr/lib/libc.a(errno.o)
 position            0x25              obj/Release/gps.o
-_buffer             0x40              obj/Release/gsm.o
+_buffer             0x5a              obj/Release/gsm.o
 _serial_initialized
                     0x1               obj/Release/gsm.o
 _buffer_length      0x1               obj/Release/gsm.o
@@ -115,8 +123,22 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 obj/Release/gsm.o
  .text.GSM_WaitResponse
                 0x0000000000000000       0x68 obj/Release/gsm.o
+ .text.GSM_Test
+                0x0000000000000000       0x78 obj/Release/gsm.o
+ .text.GSM_Init
+                0x0000000000000000       0x4c obj/Release/gsm.o
+ .text.GSM_WaitResponse2
+                0x0000000000000000       0x7e obj/Release/gsm.o
+ .progmem.data.__c.2351
+                0x0000000000000000        0xb obj/Release/gsm.o
+ .progmem.data.__c.2349
+                0x0000000000000000        0xb obj/Release/gsm.o
+ .progmem.data.__c.2347
+                0x0000000000000000        0x6 obj/Release/gsm.o
  .text          0x0000000000000000        0x0 obj/Release/main.o
  .bss           0x0000000000000000        0x0 obj/Release/main.o
+ .text.ProcessGPS
+                0x0000000000000000       0x2c obj/Release/main.o
  .text          0x0000000000000000        0x0 obj/Release/n3310.o
  .bss           0x0000000000000000        0x0 obj/Release/n3310.o
  .text.LcdContrast
@@ -136,10 +158,22 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 obj/Release/serial.o
  .text.serialEnd
                 0x0000000000000000        0xa obj/Release/serial.o
+ .text.serialWriteChar
+                0x0000000000000000       0x18 obj/Release/serial.o
+ .text.serialWrite
+                0x0000000000000000       0x34 obj/Release/serial.o
+ .text.serialWriteF
+                0x0000000000000000       0x34 obj/Release/serial.o
  .text.serialReadChar
                 0x0000000000000000       0x1c obj/Release/serial.o
+ .text.serialRead
+                0x0000000000000000       0x20 obj/Release/serial.o
  .text.serialWaitUntil
                 0x0000000000000000       0x12 obj/Release/serial.o
+ .text.serialSearchChr
+                0x0000000000000000       0x26 obj/Release/serial.o
+ .text.serialReadAll
+                0x0000000000000000       0x10 obj/Release/serial.o
  .text.serialGetBuffer
                 0x0000000000000000        0x6 obj/Release/serial.o
  .text.serialParseInt
@@ -162,12 +196,6 @@ Discarded input sections
                 0x0000000000000000        0x6 obj/Release/softUart.o
  .text.SUART_TurnRxOff
                 0x0000000000000000        0x8 obj/Release/softUart.o
- .text.SUART_PutChar
-                0x0000000000000000       0x2a obj/Release/softUart.o
- .text.SUART_PutStr
-                0x0000000000000000       0x1c obj/Release/softUart.o
- .text.SUART_PutStrFl
-                0x0000000000000000       0x20 obj/Release/softUart.o
  .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_divmodhi4.o)
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_divmodhi4.o)
  .text.libgcc.mul
@@ -270,10 +298,18 @@ Discarded input sections
  .stabstr       0x0000000000000000       0x43 /usr/avr/lib/libc.a(memcpy_P.o)
  .text.avr-libc
                 0x0000000000000000       0x18 /usr/avr/lib/libc.a(memcpy_P.o)
+ .text          0x0000000000000000        0x0 /usr/avr/lib/libc.a(strcat_P.o)
+ .bss           0x0000000000000000        0x0 /usr/avr/lib/libc.a(strcat_P.o)
+ .stab          0x0000000000000000       0xa8 /usr/avr/lib/libc.a(strcat_P.o)
+ .stabstr       0x0000000000000000       0x43 /usr/avr/lib/libc.a(strcat_P.o)
  .text          0x0000000000000000        0x0 /usr/avr/lib/libc.a(strcmp_P.o)
  .bss           0x0000000000000000        0x0 /usr/avr/lib/libc.a(strcmp_P.o)
  .stab          0x0000000000000000       0x90 /usr/avr/lib/libc.a(strcmp_P.o)
  .stabstr       0x0000000000000000       0x43 /usr/avr/lib/libc.a(strcmp_P.o)
+ .text          0x0000000000000000        0x0 /usr/avr/lib/libc.a(strcpy_P.o)
+ .bss           0x0000000000000000        0x0 /usr/avr/lib/libc.a(strcpy_P.o)
+ .stab          0x0000000000000000       0x78 /usr/avr/lib/libc.a(strcpy_P.o)
+ .stabstr       0x0000000000000000       0x43 /usr/avr/lib/libc.a(strcpy_P.o)
  .text          0x0000000000000000        0x0 /usr/avr/lib/libc.a(strncasecmp_P.o)
  .bss           0x0000000000000000        0x0 /usr/avr/lib/libc.a(strncasecmp_P.o)
  .stab          0x0000000000000000      0x144 /usr/avr/lib/libc.a(strncasecmp_P.o)
@@ -284,6 +320,10 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 /usr/avr/lib/libc.a(memcpy.o)
  .stab          0x0000000000000000       0x90 /usr/avr/lib/libc.a(memcpy.o)
  .stabstr       0x0000000000000000       0x3f /usr/avr/lib/libc.a(memcpy.o)
+ .text          0x0000000000000000        0x0 /usr/avr/lib/libc.a(strcat.o)
+ .bss           0x0000000000000000        0x0 /usr/avr/lib/libc.a(strcat.o)
+ .stab          0x0000000000000000       0xa8 /usr/avr/lib/libc.a(strcat.o)
+ .stabstr       0x0000000000000000       0x3f /usr/avr/lib/libc.a(strcat.o)
  .text          0x0000000000000000        0x0 /usr/avr/lib/libc.a(strchr.o)
  .bss           0x0000000000000000        0x0 /usr/avr/lib/libc.a(strchr.o)
  .stab          0x0000000000000000       0xa8 /usr/avr/lib/libc.a(strchr.o)
@@ -292,6 +332,10 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 /usr/avr/lib/libc.a(strlcpy.o)
  .stab          0x0000000000000000      0x12c /usr/avr/lib/libc.a(strlcpy.o)
  .stabstr       0x0000000000000000       0x40 /usr/avr/lib/libc.a(strlcpy.o)
+ .text          0x0000000000000000        0x0 /usr/avr/lib/libc.a(strncat.o)
+ .bss           0x0000000000000000        0x0 /usr/avr/lib/libc.a(strncat.o)
+ .stab          0x0000000000000000       0xe4 /usr/avr/lib/libc.a(strncat.o)
+ .stabstr       0x0000000000000000       0x40 /usr/avr/lib/libc.a(strncat.o)
  .text          0x0000000000000000        0x0 /usr/avr/lib/libc.a(strncmp.o)
  .bss           0x0000000000000000        0x0 /usr/avr/lib/libc.a(strncmp.o)
  .stab          0x0000000000000000       0xcc /usr/avr/lib/libc.a(strncmp.o)
@@ -650,7 +694,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000     0x1394
+.text           0x0000000000000000     0x13c8
  *(.vectors)
  .vectors       0x0000000000000000       0x34 /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
                 0x0000000000000000                __vectors
@@ -658,68 +702,78 @@ END GROUP
  *(.vectors)
  *(.progmem.gcc*)
  *(.progmem*)
- .progmem.data.__c.2349
+ .progmem.data.__c.2378
                 0x0000000000000034        0xb obj/Release/gsm.o
- .progmem.data.__c.2347
+ .progmem.data.__c.2376
                 0x000000000000003f        0xb obj/Release/gsm.o
- .progmem.data.__c.2345
+ .progmem.data.__c.2374
                 0x000000000000004a        0x6 obj/Release/gsm.o
- .progmem.data.__c.2386
-                0x0000000000000050        0x7 obj/Release/main.o
+ .progmem.data.__c.2365
+                0x0000000000000050        0x4 obj/Release/gsm.o
+ .progmem.data.__c.2404
+                0x0000000000000054        0x5 obj/Release/main.o
+ .progmem.data.__c.2392
+                0x0000000000000059        0x7 obj/Release/main.o
+ .progmem.data.__c.2389
+                0x0000000000000060        0xa obj/Release/main.o
+ .progmem.data.__c.2387
+                0x000000000000006a        0x8 obj/Release/main.o
+ .progmem.data.__c.2385
+                0x0000000000000072        0xe obj/Release/main.o
  .progmem.data.__c.2383
-                0x0000000000000057       0x11 obj/Release/main.o
- .progmem.data.__c.2381
-                0x0000000000000068        0x8 obj/Release/main.o
+                0x0000000000000080        0x8 obj/Release/main.o
  .progmem.data.__c.2379
-                0x0000000000000070        0xe obj/Release/main.o
+                0x0000000000000088       0x11 obj/Release/main.o
  .progmem.data.__c.2377
-                0x000000000000007e        0x8 obj/Release/main.o
- .progmem.data.__c.2373
-                0x0000000000000086        0x5 obj/Release/main.o
- .progmem.data.__c.2364
-                0x000000000000008b       0x11 obj/Release/main.o
- .progmem.data.__c.2362
-                0x000000000000009c        0xa obj/Release/main.o
+                0x0000000000000099        0xa obj/Release/main.o
+ .progmem.data.__c.2372
+                0x00000000000000a3        0x2 obj/Release/main.o
+ .progmem.data.__c.2370
+                0x00000000000000a5        0x4 obj/Release/main.o
+ .progmem.data.__c.2368
+                0x00000000000000a9        0x2 obj/Release/main.o
+ .progmem.data.__c.2366
+                0x00000000000000ab       0x15 obj/Release/main.o
  .progmem.data.myTelephone
-                0x00000000000000a6        0xd obj/Release/main.o
-                0x00000000000000a6                myTelephone
+                0x00000000000000c0        0xd obj/Release/main.o
+                0x00000000000000c0                myTelephone
  .progmem.data.FontLookup
-                0x00000000000000b3      0x320 obj/Release/n3310.o
-                0x00000000000003d4                . = ALIGN (0x2)
- *fill*         0x00000000000003d3        0x1 
-                0x00000000000003d4                __trampolines_start = .
+                0x00000000000000cd      0x320 obj/Release/n3310.o
+                0x00000000000003ee                . = ALIGN (0x2)
+ *fill*         0x00000000000003ed        0x1 
+                0x00000000000003ee                __trampolines_start = .
  *(.trampolines)
- .trampolines   0x00000000000003d4        0x0 linker stubs
+ .trampolines   0x00000000000003ee        0x0 linker stubs
  *(.trampolines*)
-                0x00000000000003d4                __trampolines_end = .
+                0x00000000000003ee                __trampolines_end = .
  *(.jumptables)
  *(.jumptables*)
  *(.lowtext)
  *(.lowtext*)
-                0x00000000000003d4                __ctors_start = .
+                0x00000000000003ee                __ctors_start = .
  *(.ctors)
-                0x00000000000003d4                __ctors_end = .
-                0x00000000000003d4                __dtors_start = .
+                0x00000000000003ee                __ctors_end = .
+                0x00000000000003ee                __dtors_start = .
  *(.dtors)
-                0x00000000000003d4                __dtors_end = .
+                0x00000000000003ee                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x00000000000003d4        0x0 /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
-                0x00000000000003d4                __init
+ .init0         0x00000000000003ee        0x0 /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
+                0x00000000000003ee                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x00000000000003d4        0xc /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
+ .init2         0x00000000000003ee        0xc /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x00000000000003e0       0x16 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_copy_data.o)
-                0x00000000000003e0                __do_copy_data
- .init4         0x00000000000003f6       0x10 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_clear_bss.o)
-                0x00000000000003f6                __do_clear_bss
+ .init4         0x00000000000003fa       0x16 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_copy_data.o)
+                0x00000000000003fa                __do_copy_data
+ .init4         0x0000000000000410       0x10 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_clear_bss.o)
+                0x0000000000000410                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -730,176 +784,178 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x0000000000000406        0x4 /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
+ .init9         0x0000000000000420        0x4 /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
  *(.init9)
  *(.text)
- .text          0x000000000000040a        0x2 /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
-                0x000000000000040a                __vector_22
-                0x000000000000040a                __vector_1
-                0x000000000000040a                __vector_24
-                0x000000000000040a                __vector_12
-                0x000000000000040a                __bad_interrupt
-                0x000000000000040a                __vector_6
-                0x000000000000040a                __vector_3
-                0x000000000000040a                __vector_23
-                0x000000000000040a                __vector_25
-                0x000000000000040a                __vector_11
-                0x000000000000040a                __vector_13
-                0x000000000000040a                __vector_17
-                0x000000000000040a                __vector_19
-                0x000000000000040a                __vector_7
-                0x000000000000040a                __vector_5
-                0x000000000000040a                __vector_4
-                0x000000000000040a                __vector_9
-                0x000000000000040a                __vector_2
-                0x000000000000040a                __vector_21
-                0x000000000000040a                __vector_15
-                0x000000000000040a                __vector_8
-                0x000000000000040a                __vector_14
-                0x000000000000040a                __vector_10
-                0x000000000000040a                __vector_20
-                0x000000000000040c                . = ALIGN (0x2)
+ .text          0x0000000000000424        0x2 /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
+                0x0000000000000424                __vector_22
+                0x0000000000000424                __vector_1
+                0x0000000000000424                __vector_24
+                0x0000000000000424                __vector_12
+                0x0000000000000424                __bad_interrupt
+                0x0000000000000424                __vector_6
+                0x0000000000000424                __vector_3
+                0x0000000000000424                __vector_23
+                0x0000000000000424                __vector_25
+                0x0000000000000424                __vector_11
+                0x0000000000000424                __vector_13
+                0x0000000000000424                __vector_17
+                0x0000000000000424                __vector_19
+                0x0000000000000424                __vector_7
+                0x0000000000000424                __vector_5
+                0x0000000000000424                __vector_4
+                0x0000000000000424                __vector_9
+                0x0000000000000424                __vector_2
+                0x0000000000000424                __vector_21
+                0x0000000000000424                __vector_15
+                0x0000000000000424                __vector_8
+                0x0000000000000424                __vector_14
+                0x0000000000000424                __vector_10
+                0x0000000000000424                __vector_20
+                0x0000000000000426                . = ALIGN (0x2)
  *(.text.*)
- .text.hex2bin  0x000000000000040c       0x1c obj/Release/gps.o
-                0x000000000000040c                hex2bin
+ .text.hex2bin  0x0000000000000426       0x1c obj/Release/gps.o
+                0x0000000000000426                hex2bin
  .text.check_crc
-                0x0000000000000428       0x4a obj/Release/gps.o
-                0x0000000000000428                check_crc
+                0x0000000000000442       0x4a obj/Release/gps.o
+                0x0000000000000442                check_crc
  .text.next_field
-                0x0000000000000472       0x18 obj/Release/gps.o
-                0x0000000000000472                next_field
+                0x000000000000048c       0x18 obj/Release/gps.o
+                0x000000000000048c                next_field
  .text.parseGPRMC
-                0x000000000000048a       0xda obj/Release/gps.o
-                0x000000000000048a                parseGPRMC
- .text.GSM_Test
-                0x0000000000000564       0x78 obj/Release/gsm.o
-                0x0000000000000564                GSM_Test
- .text.GSM_Init
-                0x00000000000005dc       0x4c obj/Release/gsm.o
-                0x00000000000005dc                GSM_Init
+                0x00000000000004a4       0xda obj/Release/gps.o
+                0x00000000000004a4                parseGPRMC
  .text.GSM_PowerOn
-                0x0000000000000628       0x2c obj/Release/gsm.o
-                0x0000000000000628                GSM_PowerOn
+                0x000000000000057e       0x2c obj/Release/gsm.o
+                0x000000000000057e                GSM_PowerOn
+ .text.GSM_Test2
+                0x00000000000005aa       0x82 obj/Release/gsm.o
+                0x00000000000005aa                GSM_Test2
+ .text.GSM_Init2
+                0x000000000000062c       0x4c obj/Release/gsm.o
+                0x000000000000062c                GSM_Init2
+ .text.MakeURL  0x0000000000000678       0x52 obj/Release/main.o
+                0x0000000000000678                MakeURL
  .text.SendPosition
-                0x0000000000000654       0x56 obj/Release/main.o
-                0x0000000000000654                SendPosition
- .text.ProcessGSM
-                0x00000000000006aa      0x172 obj/Release/main.o
-                0x00000000000006aa                ProcessGSM
+                0x00000000000006ca       0x76 obj/Release/main.o
+                0x00000000000006ca                SendPosition
  .text.ProcessDisplay
-                0x000000000000081c       0xe0 obj/Release/main.o
-                0x000000000000081c                ProcessDisplay
- .text.main     0x00000000000008fc       0xbc obj/Release/main.o
-                0x00000000000008fc                main
- .text.LcdSend  0x00000000000009b8       0x1a obj/Release/n3310.o
+                0x0000000000000740       0xe0 obj/Release/main.o
+                0x0000000000000740                ProcessDisplay
+ .text.main     0x0000000000000820      0x1d2 obj/Release/main.o
+                0x0000000000000820                main
+ .text.LcdSend  0x00000000000009f2       0x1a obj/Release/n3310.o
  .text.LcdClear
-                0x00000000000009d2       0x30 obj/Release/n3310.o
-                0x00000000000009d2                LcdClear
+                0x0000000000000a0c       0x30 obj/Release/n3310.o
+                0x0000000000000a0c                LcdClear
  .text.LcdUpdate
-                0x0000000000000a02       0xce obj/Release/n3310.o
-                0x0000000000000a02                LcdUpdate
- .text.LcdInit  0x0000000000000ad0       0x48 obj/Release/n3310.o
-                0x0000000000000ad0                LcdInit
+                0x0000000000000a3c       0xce obj/Release/n3310.o
+                0x0000000000000a3c                LcdUpdate
+ .text.LcdInit  0x0000000000000b0a       0x48 obj/Release/n3310.o
+                0x0000000000000b0a                LcdInit
  .text.LcdGotoXYFont
-                0x0000000000000b18       0x36 obj/Release/n3310.o
-                0x0000000000000b18                LcdGotoXYFont
- .text.LcdChr   0x0000000000000b4e      0x1cc obj/Release/n3310.o
-                0x0000000000000b4e                LcdChr
- .text.LcdStr   0x0000000000000d1a       0x44 obj/Release/n3310.o
-                0x0000000000000d1a                LcdStr
- .text.LcdFStr  0x0000000000000d5e       0x3c obj/Release/n3310.o
-                0x0000000000000d5e                LcdFStr
- .text.shift    0x0000000000000d9a       0x46 obj/Release/serial.o
-                0x0000000000000d9a                shift
- .text.push     0x0000000000000de0       0x42 obj/Release/serial.o
-                0x0000000000000de0                push
+                0x0000000000000b52       0x36 obj/Release/n3310.o
+                0x0000000000000b52                LcdGotoXYFont
+ .text.LcdChr   0x0000000000000b88      0x1cc obj/Release/n3310.o
+                0x0000000000000b88                LcdChr
+ .text.LcdStr   0x0000000000000d54       0x44 obj/Release/n3310.o
+                0x0000000000000d54                LcdStr
+ .text.LcdFStr  0x0000000000000d98       0x3c obj/Release/n3310.o
+                0x0000000000000d98                LcdFStr
+ .text.shift    0x0000000000000dd4       0x46 obj/Release/serial.o
+                0x0000000000000dd4                shift
+ .text.push     0x0000000000000e1a       0x42 obj/Release/serial.o
+                0x0000000000000e1a                push
  .text.__vector_18
-                0x0000000000000e22       0x4e obj/Release/serial.o
-                0x0000000000000e22                __vector_18
+                0x0000000000000e5c       0x4e obj/Release/serial.o
+                0x0000000000000e5c                __vector_18
  .text.serialAvailable
-                0x0000000000000e70        0x6 obj/Release/serial.o
-                0x0000000000000e70                serialAvailable
+                0x0000000000000eaa        0x6 obj/Release/serial.o
+                0x0000000000000eaa                serialAvailable
  .text.serialInit
-                0x0000000000000e76       0x24 obj/Release/serial.o
-                0x0000000000000e76                serialInit
- .text.serialWriteChar
-                0x0000000000000e9a       0x18 obj/Release/serial.o
-                0x0000000000000e9a                serialWriteChar
- .text.serialWrite
-                0x0000000000000eb2       0x34 obj/Release/serial.o
-                0x0000000000000eb2                serialWrite
- .text.serialWriteF
-                0x0000000000000ee6       0x34 obj/Release/serial.o
-                0x0000000000000ee6                serialWriteF
+                0x0000000000000eb0       0x24 obj/Release/serial.o
+                0x0000000000000eb0                serialInit
  .text.serialLast
-                0x0000000000000f1a       0x12 obj/Release/serial.o
-                0x0000000000000f1a                serialLast
- .text.serialRead
-                0x0000000000000f2c       0x20 obj/Release/serial.o
-                0x0000000000000f2c                serialRead
+                0x0000000000000ed4       0x12 obj/Release/serial.o
+                0x0000000000000ed4                serialLast
  .text.serialReadUntil
-                0x0000000000000f4c       0xa2 obj/Release/serial.o
-                0x0000000000000f4c                serialReadUntil
+                0x0000000000000ee6       0xa2 obj/Release/serial.o
+                0x0000000000000ee6                serialReadUntil
  .text.serialClearBuffer
-                0x0000000000000fee        0x6 obj/Release/serial.o
-                0x0000000000000fee                serialClearBuffer
- .text.serialSearchChr
-                0x0000000000000ff4       0x26 obj/Release/serial.o
-                0x0000000000000ff4                serialSearchChr
- .text.serialReadAll
-                0x000000000000101a       0x10 obj/Release/serial.o
-                0x000000000000101a                serialReadAll
+                0x0000000000000f88        0x6 obj/Release/serial.o
+                0x0000000000000f88                serialClearBuffer
  .text.__vector_16
-                0x000000000000102a      0x156 obj/Release/softUart.o
-                0x000000000000102a                __vector_16
+                0x0000000000000f8e      0x156 obj/Release/softUart.o
+                0x0000000000000f8e                __vector_16
  .text.SUART_Init
-                0x0000000000001180       0x2c obj/Release/softUart.o
-                0x0000000000001180                SUART_Init
+                0x00000000000010e4       0x2c obj/Release/softUart.o
+                0x00000000000010e4                SUART_Init
  .text.SUART_GetChar
-                0x00000000000011ac       0x3c obj/Release/softUart.o
-                0x00000000000011ac                SUART_GetChar
+                0x0000000000001110       0x38 obj/Release/softUart.o
+                0x0000000000001110                SUART_GetChar
  .text.SUART_FlushInBuf
-                0x00000000000011e8        0xa obj/Release/softUart.o
-                0x00000000000011e8                SUART_FlushInBuf
+                0x0000000000001148        0xa obj/Release/softUart.o
+                0x0000000000001148                SUART_FlushInBuf
  .text.SUART_Kbhit
-                0x00000000000011f2       0x12 obj/Release/softUart.o
-                0x00000000000011f2                SUART_Kbhit
+                0x0000000000001152       0x12 obj/Release/softUart.o
+                0x0000000000001152                SUART_Kbhit
+ .text.SUART_PutChar
+                0x0000000000001164       0x2a obj/Release/softUart.o
+                0x0000000000001164                SUART_PutChar
+ .text.SUART_PutStr
+                0x000000000000118e       0x1c obj/Release/softUart.o
+                0x000000000000118e                SUART_PutStr
+ .text.SUART_PutStrFl
+                0x00000000000011aa       0x20 obj/Release/softUart.o
+                0x00000000000011aa                SUART_PutStrFl
  .text.libgcc.div
-                0x0000000000001204       0x26 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_divmodhi4.o)
-                0x0000000000001204                __divmodhi4
-                0x0000000000001204                _div
+                0x00000000000011ca       0x26 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_divmodhi4.o)
+                0x00000000000011ca                __divmodhi4
+                0x00000000000011ca                _div
  .text.libgcc.div
-                0x000000000000122a       0x28 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_udivmodhi4.o)
-                0x000000000000122a                __udivmodhi4
+                0x00000000000011f0       0x28 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_udivmodhi4.o)
+                0x00000000000011f0                __udivmodhi4
  .text.avr-libc
-                0x0000000000001252       0x18 /usr/avr/lib/libc.a(strcmp_P.o)
-                0x0000000000001252                strcmp_P
+                0x0000000000001218       0x1c /usr/avr/lib/libc.a(strcat_P.o)
+                0x0000000000001218                strcat_P
  .text.avr-libc
-                0x000000000000126a       0x16 /usr/avr/lib/libc.a(memcpy.o)
-                0x000000000000126a                memcpy
+                0x0000000000001234       0x18 /usr/avr/lib/libc.a(strcmp_P.o)
+                0x0000000000001234                strcmp_P
  .text.avr-libc
-                0x0000000000001280       0x1a /usr/avr/lib/libc.a(strchr.o)
-                0x0000000000001280                strchr
+                0x000000000000124c       0x14 /usr/avr/lib/libc.a(strcpy_P.o)
+                0x000000000000124c                strcpy_P
  .text.avr-libc
-                0x000000000000129a       0x2e /usr/avr/lib/libc.a(strlcpy.o)
-                0x000000000000129a                strlcpy
+                0x0000000000001260       0x16 /usr/avr/lib/libc.a(memcpy.o)
+                0x0000000000001260                memcpy
  .text.avr-libc
-                0x00000000000012c8       0x20 /usr/avr/lib/libc.a(strncmp.o)
-                0x00000000000012c8                strncmp
+                0x0000000000001276       0x1a /usr/avr/lib/libc.a(strcat.o)
+                0x0000000000001276                strcat
  .text.avr-libc
-                0x00000000000012e8       0x3e /usr/avr/lib/libc.a(strstr.o)
-                0x00000000000012e8                strstr
+                0x0000000000001290       0x1a /usr/avr/lib/libc.a(strchr.o)
+                0x0000000000001290                strchr
  .text.avr-libc
-                0x0000000000001326       0x46 /usr/avr/lib/libc.a(itoa.o)
-                0x0000000000001326                itoa
+                0x00000000000012aa       0x2e /usr/avr/lib/libc.a(strlcpy.o)
+                0x00000000000012aa                strlcpy
  .text.avr-libc
-                0x000000000000136c       0x24 /usr/avr/lib/libc.a(strrev.o)
-                0x000000000000136c                strrev
-                0x0000000000001390                . = ALIGN (0x2)
+                0x00000000000012d8       0x24 /usr/avr/lib/libc.a(strncat.o)
+                0x00000000000012d8                strncat
+ .text.avr-libc
+                0x00000000000012fc       0x20 /usr/avr/lib/libc.a(strncmp.o)
+                0x00000000000012fc                strncmp
+ .text.avr-libc
+                0x000000000000131c       0x3e /usr/avr/lib/libc.a(strstr.o)
+                0x000000000000131c                strstr
+ .text.avr-libc
+                0x000000000000135a       0x46 /usr/avr/lib/libc.a(itoa.o)
+                0x000000000000135a                itoa
+ .text.avr-libc
+                0x00000000000013a0       0x24 /usr/avr/lib/libc.a(strrev.o)
+                0x00000000000013a0                strrev
+                0x00000000000013c4                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000000000001390        0x0 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_exit.o)
-                0x0000000000001390                exit
-                0x0000000000001390                _exit
+ .fini9         0x00000000000013c4        0x0 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_exit.o)
+                0x00000000000013c4                exit
+                0x00000000000013c4                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -918,11 +974,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000000000001390        0x4 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_exit.o)
+ .fini0         0x00000000000013c4        0x4 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_exit.o)
  *(.fini0)
-                0x0000000000001394                _etext = .
+                0x00000000000013c8                _etext = .
 
-.data           0x0000000000800100       0x1c load address 0x0000000000001394
+.data           0x0000000000800100       0x1c load address 0x00000000000013c8
                 0x0000000000800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
@@ -942,11 +998,15 @@ END GROUP
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(strtol.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(isspace.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(memcpy_P.o)
+ .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(strcat_P.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(strcmp_P.o)
+ .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(strcpy_P.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(strncasecmp_P.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(memcpy.o)
+ .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(strcat.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(strchr.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(strlcpy.o)
+ .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(strncat.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(strncmp.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(strstr.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(itoa.o)
@@ -987,78 +1047,77 @@ END GROUP
  .rodata.str1.1
                 0x0000000000800106        0x7 obj/Release/gsm.o
  .rodata.str1.1
-                0x000000000080010d        0xe obj/Release/main.o
+                0x000000000080010d        0xf obj/Release/main.o
  *(.gnu.linkonce.d*)
                 0x000000000080011c                . = ALIGN (0x2)
- *fill*         0x000000000080011b        0x1 
                 0x000000000080011c                _edata = .
                 0x000000000080011c                PROVIDE (__data_end, .)
 
-.bss            0x000000000080011c      0x2bb
+.bss            0x000000000080011c      0x365
                 0x000000000080011c                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.available
+ .bss.gpsBufCnt
                 0x000000000080011c        0x1 obj/Release/main.o
-                0x000000000080011c                available
- .bss.cycles    0x000000000080011d        0x2 obj/Release/main.o
-                0x000000000080011d                cycles
- .bss.gsm_ok    0x000000000080011f        0x1 obj/Release/main.o
-                0x000000000080011f                gsm_ok
+ .bss.gpsBuf    0x000000000080011d       0x50 obj/Release/main.o
+ .bss.cycles    0x000000000080016d        0x2 obj/Release/main.o
+                0x000000000080016d                cycles
+ .bss.gsm_ok    0x000000000080016f        0x1 obj/Release/main.o
+                0x000000000080016f                gsm_ok
  .bss.msg_counter
-                0x0000000000800120        0x1 obj/Release/main.o
-                0x0000000000800120                msg_counter
+                0x0000000000800170        0x1 obj/Release/main.o
+                0x0000000000800170                msg_counter
  .bss.UpdateLcd
-                0x0000000000800121        0x1 obj/Release/n3310.o
+                0x0000000000800171        0x1 obj/Release/n3310.o
  .bss.LcdCacheIdx
-                0x0000000000800122        0x2 obj/Release/n3310.o
+                0x0000000000800172        0x2 obj/Release/n3310.o
  .bss.HiWaterMark
-                0x0000000000800124        0x2 obj/Release/n3310.o
+                0x0000000000800174        0x2 obj/Release/n3310.o
  .bss.LoWaterMark
-                0x0000000000800126        0x2 obj/Release/n3310.o
- .bss.LcdCache  0x0000000000800128      0x1f8 obj/Release/n3310.o
+                0x0000000000800176        0x2 obj/Release/n3310.o
+ .bss.LcdCache  0x0000000000800178      0x1f8 obj/Release/n3310.o
  .bss.internal_rx_buffer.1820
-                0x0000000000800320        0x2 obj/Release/softUart.o
+                0x0000000000800370        0x2 obj/Release/softUart.o
  .bss.internal_tx_buffer
-                0x0000000000800322        0x2 obj/Release/softUart.o
+                0x0000000000800372        0x2 obj/Release/softUart.o
  .bss.bits_left_in_tx
-                0x0000000000800324        0x1 obj/Release/softUart.o
+                0x0000000000800374        0x1 obj/Release/softUart.o
  .bss.timer_tx_ctr
-                0x0000000000800325        0x1 obj/Release/softUart.o
+                0x0000000000800375        0x1 obj/Release/softUart.o
  .bss.flag_tx_busy
-                0x0000000000800326        0x1 obj/Release/softUart.o
+                0x0000000000800376        0x1 obj/Release/softUart.o
  .bss.bits_left_in_rx
-                0x0000000000800327        0x1 obj/Release/softUart.o
+                0x0000000000800377        0x1 obj/Release/softUart.o
  .bss.timer_rx_ctr
-                0x0000000000800328        0x1 obj/Release/softUart.o
- .bss.rx_mask   0x0000000000800329        0x1 obj/Release/softUart.o
+                0x0000000000800378        0x1 obj/Release/softUart.o
+ .bss.rx_mask   0x0000000000800379        0x1 obj/Release/softUart.o
  .bss.flag_rx_off
-                0x000000000080032a        0x1 obj/Release/softUart.o
+                0x000000000080037a        0x1 obj/Release/softUart.o
  .bss.flag_rx_waiting_for_stop_bit
-                0x000000000080032b        0x1 obj/Release/softUart.o
+                0x000000000080037b        0x1 obj/Release/softUart.o
  .bss.flag_rx_ready
-                0x000000000080032c        0x1 obj/Release/softUart.o
- .bss.qout      0x000000000080032d        0x1 obj/Release/softUart.o
- .bss.qin       0x000000000080032e        0x1 obj/Release/softUart.o
- .bss.inbuf     0x000000000080032f       0x40 obj/Release/softUart.o
+                0x000000000080037c        0x1 obj/Release/softUart.o
+ .bss.qout      0x000000000080037d        0x1 obj/Release/softUart.o
+ .bss.qin       0x000000000080037e        0x1 obj/Release/softUart.o
+ .bss.inbuf     0x000000000080037f       0x80 obj/Release/softUart.o
  *(COMMON)
- COMMON         0x000000000080036f       0x25 obj/Release/gps.o
-                0x000000000080036f                position
- COMMON         0x0000000000800394       0x43 obj/Release/gsm.o
-                0x0000000000800394                _buffer
-                0x00000000008003d4                _serial_initialized
-                0x00000000008003d5                _buffer_length
-                0x00000000008003d6                lastChar
-                0x00000000008003d7                PROVIDE (__bss_end, .)
-                0x0000000000001394                __data_load_start = LOADADDR (.data)
-                0x00000000000013b0                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00000000008003ff       0x25 obj/Release/gps.o
+                0x00000000008003ff                position
+ COMMON         0x0000000000800424       0x5d obj/Release/gsm.o
+                0x0000000000800424                _buffer
+                0x000000000080047e                _serial_initialized
+                0x000000000080047f                _buffer_length
+                0x0000000000800480                lastChar
+                0x0000000000800481                PROVIDE (__bss_end, .)
+                0x00000000000013c8                __data_load_start = LOADADDR (.data)
+                0x00000000000013e4                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00000000008003d7        0x0
-                0x00000000008003d7                PROVIDE (__noinit_start, .)
+.noinit         0x0000000000800481        0x0
+                0x0000000000800481                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00000000008003d7                PROVIDE (__noinit_end, .)
-                0x00000000008003d7                _end = .
-                0x00000000008003d7                PROVIDE (__heap_start, .)
+                0x0000000000800481                PROVIDE (__noinit_end, .)
+                0x0000000000800481                _end = .
+                0x0000000000800481                PROVIDE (__heap_start, .)
 
 .eeprom         0x0000000000810000        0x0
  *(.eeprom*)
@@ -1168,12 +1227,15 @@ Cross Reference Table
 
 Symbol                                            File
 GSM_Init                                          obj/Release/gsm.o
+GSM_Init2                                         obj/Release/gsm.o
                                                   obj/Release/main.o
 GSM_PowerOn                                       obj/Release/gsm.o
                                                   obj/Release/main.o
 GSM_Test                                          obj/Release/gsm.o
+GSM_Test2                                         obj/Release/gsm.o
                                                   obj/Release/main.o
 GSM_WaitResponse                                  obj/Release/gsm.o
+GSM_WaitResponse2                                 obj/Release/gsm.o
 LcdBars                                           obj/Release/n3310.o
 LcdChr                                            obj/Release/n3310.o
                                                   obj/Release/main.o
@@ -1196,19 +1258,27 @@ LcdStr                                            obj/Release/n3310.o
                                                   obj/Release/main.o
 LcdUpdate                                         obj/Release/n3310.o
                                                   obj/Release/main.o
+MakeURL                                           obj/Release/main.o
 ProcessDisplay                                    obj/Release/main.o
-ProcessGSM                                        obj/Release/main.o
+ProcessGPS                                        obj/Release/main.o
 SUART_FlushInBuf                                  obj/Release/softUart.o
                                                   obj/Release/main.o
+                                                  obj/Release/gsm.o
 SUART_GetChar                                     obj/Release/softUart.o
                                                   obj/Release/main.o
+                                                  obj/Release/gsm.o
 SUART_Init                                        obj/Release/softUart.o
                                                   obj/Release/main.o
 SUART_Kbhit                                       obj/Release/softUart.o
                                                   obj/Release/main.o
+                                                  obj/Release/gsm.o
 SUART_PutChar                                     obj/Release/softUart.o
+                                                  obj/Release/main.o
 SUART_PutStr                                      obj/Release/softUart.o
+                                                  obj/Release/main.o
 SUART_PutStrFl                                    obj/Release/softUart.o
+                                                  obj/Release/main.o
+                                                  obj/Release/gsm.o
 SUART_TurnRxOff                                   obj/Release/softUart.o
 SUART_TurnRxOn                                    obj/Release/softUart.o
 SendPosition                                      obj/Release/main.o
@@ -1340,7 +1410,6 @@ _exit                                             /usr/lib/gcc/avr/4.8.2/avr4/li
 _serial_initialized                               obj/Release/serial.o
                                                   obj/Release/main.o
                                                   obj/Release/gsm.o
-available                                         obj/Release/main.o
 check_crc                                         obj/Release/gps.o
 cycles                                            obj/Release/main.o
 dtoa_prf                                          /usr/avr/lib/libc.a(dtoa_prf.o)
@@ -1399,35 +1468,38 @@ serialPrintIntLn                                  obj/Release/serial.o
 serialRead                                        obj/Release/serial.o
                                                   obj/Release/gsm.o
 serialReadAll                                     obj/Release/serial.o
-                                                  obj/Release/main.o
 serialReadChar                                    obj/Release/serial.o
 serialReadUntil                                   obj/Release/serial.o
                                                   obj/Release/main.o
 serialSearchChr                                   obj/Release/serial.o
-                                                  obj/Release/main.o
 serialWaitUntil                                   obj/Release/serial.o
 serialWrite                                       obj/Release/serial.o
-                                                  obj/Release/main.o
                                                   obj/Release/gsm.o
 serialWriteChar                                   obj/Release/serial.o
-                                                  obj/Release/main.o
 serialWriteF                                      obj/Release/serial.o
-                                                  obj/Release/main.o
                                                   obj/Release/gsm.o
 shift                                             obj/Release/serial.o
 sprintf                                           /usr/avr/lib/libc.a(sprintf.o)
                                                   obj/Release/serial.o
+strcat                                            /usr/avr/lib/libc.a(strcat.o)
+                                                  obj/Release/main.o
+strcat_P                                          /usr/avr/lib/libc.a(strcat_P.o)
+                                                  obj/Release/main.o
 strchr                                            /usr/avr/lib/libc.a(strchr.o)
                                                   obj/Release/serial.o
                                                   obj/Release/main.o
                                                   obj/Release/gps.o
 strcmp_P                                          /usr/avr/lib/libc.a(strcmp_P.o)
                                                   obj/Release/main.o
+strcpy_P                                          /usr/avr/lib/libc.a(strcpy_P.o)
+                                                  obj/Release/main.o
 strlcpy                                           /usr/avr/lib/libc.a(strlcpy.o)
                                                   obj/Release/main.o
                                                   obj/Release/gps.o
 strncasecmp_P                                     /usr/avr/lib/libc.a(strncasecmp_P.o)
                                                   /usr/avr/lib/libc.a(strtod.o)
+strncat                                           /usr/avr/lib/libc.a(strncat.o)
+                                                  obj/Release/main.o
 strncmp                                           /usr/avr/lib/libc.a(strncmp.o)
                                                   obj/Release/gps.o
 strnlen                                           /usr/avr/lib/libc.a(strnlen.o)

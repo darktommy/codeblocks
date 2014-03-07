@@ -18,5 +18,7 @@ uint8_t GSM_Test();
 void GSM_Init();
 void GSM_PowerOn();
 
+uint8_t GSM_Test2();
+void GSM_Init2();
 
 #endif // GSM_H_INCLUDED

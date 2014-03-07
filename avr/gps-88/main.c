@@ -124,39 +124,7 @@ int main()
 
     memset(buf,0,255);
     memset(strbuf,0,50);
-/*
-    //для аппаратного UART
-    while(1)
-    {
-        if(serialAvailable()>0)
-        {
-            buf_len = serialReadUntil(buf, 255, '\n');
-            buf[buf_len] = '\0';
-            serialClearBuffer();
-            if(parse(buf, &position) == 0)
-            {
-                LcdClear();
 
-                dtostrf(position.latitude, 2,2,strbuf);
-                LcdGotoXYFont(0,0);
-                LcdStr(FONT_1X, (byte*)strbuf);
-
-                dtostrf(position.longtitude, 2,2,strbuf);
-                LcdGotoXYFont(0,1);
-                LcdStr(FONT_1X, (byte*)strbuf);
-
-                if(position.valid != 1)
-                {
-                    LcdGotoXYFont(0,5);
-                    LcdStr(FONT_1X,(byte*)"not ready");
-                }
-                LcdUpdate();
-
-            }
-
-        }
-    }
-*/
     //для программного UART
     uint8_t bufcnt=0;
     char c;

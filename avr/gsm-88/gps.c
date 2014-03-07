@@ -89,7 +89,7 @@ uint8_t parseGPGLL(char* buf, data* d)
 uint8_t parseGPRMC(char* buf, data* d)
 {
     buf = strchr(buf, '$');
-    if(buf == 0) return -1;
+    if(buf == 0) return 0;
 
     buf++;
 

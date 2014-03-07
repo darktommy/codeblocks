@@ -45,7 +45,7 @@ ISR(USART_RXC_vect)
 }
 #endif
 
-#if defined(__AVR_ATmega88P__)
+#if defined(__AVR_ATmega88P__) || defined(__AVR_ATmega48__) || defined(__AVR_ATmega168__)
 // прерывание по приёму байта
 ISR(USART_RX_vect)
 {
@@ -72,7 +72,7 @@ void serialInit(uint8_t SPEED)
     UCSRC = (1 << URSEL) | (0 << UMSEL) | (0 << USBS) | (3 << UCSZ0); //8n1
 #endif
 
-#if defined(__AVR_ATmega88P__)
+#if defined(__AVR_ATmega88P__) || defined(__AVR_ATmega48__) || defined(__AVR_ATmega168__)
     UBRR0H = (unsigned char)SPEED << 8;
     UBRR0L = (unsigned char)SPEED;
     UCSR0A = (0 << U2X0);
@@ -90,7 +90,7 @@ void serialEnd()
     UCSRB = (0 << UDRIE) | (0 << TXCIE) | (0 << RXCIE) | (0 << RXEN) | (0 << TXEN);
 #endif
 
-#if defined(__AVR_ATmega88P__)
+#if defined(__AVR_ATmega88P__) || defined(__AVR_ATmega48__) || defined(__AVR_ATmega168__)
     UCSR0B = (0 << UDRIE0) | (0 << TXCIE0) | (0 << RXCIE0) | (0 << RXEN0) | (0 << TXEN0);
 #endif
 
@@ -107,7 +107,7 @@ void serialWriteChar(char ch)
         UDR = ch;
         #endif
 
-        #if defined(__AVR_ATmega88P__)
+        #if defined(__AVR_ATmega88P__) || defined(__AVR_ATmega48__) || defined(__AVR_ATmega168__)
         UDR0 = ch;
         #endif
     }
@@ -123,7 +123,7 @@ void serialWrite(char* buf)
             #if defined(__AVR_ATmega8__) || defined(__AVR_ATmega16__)
             UDR = *buf;
             #endif
-            #if defined(__AVR_ATmega88P__)
+            #if defined(__AVR_ATmega88P__) || defined(__AVR_ATmega48__) || defined(__AVR_ATmega168__)
             UDR0 = *buf;
             #endif
             buf++;
@@ -140,7 +140,7 @@ void serialWriteF(const unsigned char* dataPtr)
         #if defined(__AVR_ATmega8__) || defined(__AVR_ATmega16__)
         UDR = c;
         #endif
-        #if defined(__AVR_ATmega88P__)
+        #if defined(__AVR_ATmega88P__) || defined(__AVR_ATmega48__) || defined(__AVR_ATmega168__)
         UDR0 = c;
         #endif
     }

@@ -33,7 +33,7 @@
 #define SUART_BAUD_RATE   9600L
 
 /*вместимость приемного буфера*/
-#define SUART_BUF_SIZE    64
+#define SUART_BUF_SIZE    128
 
 /*пин приемника*/
 #define RX_PINX       PINC

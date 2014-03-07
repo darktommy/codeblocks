@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1394115930 source:/home/max/codeblocks/avr/gsm-88/main.c
+1394203554 source:/home/max/codeblocks/avr/gsm-88/main.c
 	<avr/io.h>
 	<util/delay.h>
 	<avr/pgmspace.h>
@@ -24,7 +24,7 @@
 	<delay.h>
 	<stdint.h>
 
-1394115949 /home/max/codeblocks/avr/gsm-88/serial.h
+1394203596 /home/max/codeblocks/avr/gsm-88/serial.h
 	<avr/io.h>
 	<avr/interrupt.h>
 	<util/delay.h>
@@ -43,16 +43,16 @@
 	<avr/interrupt.h>
 	"n3310.h"
 
-1394114269 source:/home/max/codeblocks/avr/gsm-88/serial.c
+1394129419 source:/home/max/codeblocks/avr/gsm-88/serial.c
 	"serial.h"
 
-1393692930 source:/home/max/codeblocks/avr/gsm-88/softUart.c
+1394200310 source:/home/max/codeblocks/avr/gsm-88/softUart.c
 	"softUart.h"
 
-1393693085 /home/max/codeblocks/avr/gsm-88/softUart.h
+1394200319 /home/max/codeblocks/avr/gsm-88/softUart.h
 	"compilers_3.h"
 
-1393775549 /home/max/codeblocks/avr/gsm-88/gsm.h
+1394200203 /home/max/codeblocks/avr/gsm-88/gsm.h
 	<avr/io.h>
 	<util/delay.h>
 	<avr/pgmspace.h>
@@ -63,10 +63,10 @@
 	"softUart.h"
 	"n3310.h"
 
-1394043584 source:/home/max/codeblocks/avr/gsm-88/gsm.c
+1394200832 source:/home/max/codeblocks/avr/gsm-88/gsm.c
 	"gsm.h"
 
-1394049041 source:/home/max/codeblocks/avr/gsm-88/gps.c
+1394199236 source:/home/max/codeblocks/avr/gsm-88/gps.c
 	"gps.h"
 
 1394035260 /home/max/codeblocks/avr/gsm-88/gps.h
