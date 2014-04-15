@@ -1,0 +1,67 @@
+# depslib dependency file v1.0
+1397508912 source:/home/max/codeblocks/avr/gps-tracker-48/gps.c
+	"gps.h"
+
+1397245183 /home/max/codeblocks/avr/gps-tracker-48/gps.h
+	<avr/io.h>
+	<string.h>
+	<stdlib.h>
+
+1397461948 source:/home/max/codeblocks/avr/gps-tracker-48/gsm.c
+	"gsm.h"
+
+1397056605 /home/max/codeblocks/avr/gps-tracker-48/gsm.h
+	<avr/io.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	<string.h>
+	<stdlib.h>
+	"compilers_3.h"
+	"serial.h"
+	"softUart.h"
+
+1368803832 /home/max/codeblocks/avr/gps-tracker-48/compilers_3.h
+	<ioavr.h>
+	<inavr.h>
+	<intrinsics.h>
+	<avr/io.h>
+	<util/delay.h>
+	<avr/interrupt.h>
+	<avr/pgmspace.h>
+	<io.h>
+	<delay.h>
+	<stdint.h>
+
+1394211762 /home/max/codeblocks/avr/gps-tracker-48/serial.h
+	<avr/io.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	<string.h>
+	<stdlib.h>
+	<ctype.h>
+	<stdio.h>
+
+1397056554 /home/max/codeblocks/avr/gps-tracker-48/softUart.h
+	"compilers_3.h"
+
+1393747074 /home/max/codeblocks/avr/gps-tracker-48/n3310.h
+
+1397511853 source:/home/max/codeblocks/avr/gps-tracker-48/main.c
+	<avr/io.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	"compilers_3.h"
+	"serial.h"
+	<string.h>
+	<stdlib.h>
+	"softUart.h"
+	"gsm.h"
+	"gps.h"
+
+1394209425 source:/home/max/codeblocks/avr/gps-tracker-48/serial.c
+	"serial.h"
+
+1394200310 source:/home/max/codeblocks/avr/gps-tracker-48/softUart.c
+	"softUart.h"
+
