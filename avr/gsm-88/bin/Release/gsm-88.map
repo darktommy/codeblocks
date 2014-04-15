@@ -42,7 +42,6 @@ Archive member included because of file (symbol)
                               obj/Release/gps.o (strncmp)
 /usr/avr/lib/libc.a(strstr.o)
                               obj/Release/gsm.o (strstr)
-/usr/avr/lib/libc.a(itoa.o)   obj/Release/main.o (itoa)
 /usr/avr/lib/libc.a(sprintf.o)
                               obj/Release/serial.o (sprintf)
 /usr/avr/lib/libc.a(cmpsf2.o)
@@ -68,8 +67,6 @@ Archive member included because of file (symbol)
                               /usr/avr/lib/libc.a(vfprintf_std.o) (strnlen_P)
 /usr/avr/lib/libc.a(strnlen.o)
                               /usr/avr/lib/libc.a(vfprintf_std.o) (strnlen)
-/usr/avr/lib/libc.a(strrev.o)
-                              /usr/avr/lib/libc.a(itoa.o) (strrev)
 /usr/avr/lib/libc.a(fputc.o)  /usr/avr/lib/libc.a(vfprintf_std.o) (fputc)
 /usr/avr/lib/libc.a(ultoa_invert.o)
                               /usr/avr/lib/libc.a(vfprintf_std.o) (__ultoa_invert)
@@ -137,12 +134,25 @@ Discarded input sections
                 0x0000000000000000        0x6 obj/Release/gsm.o
  .text          0x0000000000000000        0x0 obj/Release/main.o
  .bss           0x0000000000000000        0x0 obj/Release/main.o
+ .text.GPS_OFF  0x0000000000000000        0x6 obj/Release/main.o
+ .text.GPS_ON   0x0000000000000000        0x6 obj/Release/main.o
  .text.ProcessGPS
-                0x0000000000000000       0x2c obj/Release/main.o
+                0x0000000000000000       0x52 obj/Release/main.o
  .text          0x0000000000000000        0x0 obj/Release/n3310.o
  .bss           0x0000000000000000        0x0 obj/Release/n3310.o
+ .text.LcdSend  0x0000000000000000       0x1a obj/Release/n3310.o
+ .text.LcdClear
+                0x0000000000000000       0x30 obj/Release/n3310.o
+ .text.LcdUpdate
+                0x0000000000000000       0xce obj/Release/n3310.o
+ .text.LcdInit  0x0000000000000000       0x48 obj/Release/n3310.o
  .text.LcdContrast
                 0x0000000000000000       0x22 obj/Release/n3310.o
+ .text.LcdGotoXYFont
+                0x0000000000000000       0x36 obj/Release/n3310.o
+ .text.LcdChr   0x0000000000000000      0x1cc obj/Release/n3310.o
+ .text.LcdStr   0x0000000000000000       0x44 obj/Release/n3310.o
+ .text.LcdFStr  0x0000000000000000       0x3c obj/Release/n3310.o
  .text.LcdPixel
                 0x0000000000000000       0xc4 obj/Release/n3310.o
  .text.LcdLine  0x0000000000000000       0xfe obj/Release/n3310.o
@@ -154,6 +164,17 @@ Discarded input sections
  .text.LcdRect  0x0000000000000000       0x90 obj/Release/n3310.o
  .text.LcdImage
                 0x0000000000000000       0x28 obj/Release/n3310.o
+ .bss.UpdateLcd
+                0x0000000000000000        0x1 obj/Release/n3310.o
+ .bss.LcdCacheIdx
+                0x0000000000000000        0x2 obj/Release/n3310.o
+ .bss.HiWaterMark
+                0x0000000000000000        0x2 obj/Release/n3310.o
+ .bss.LoWaterMark
+                0x0000000000000000        0x2 obj/Release/n3310.o
+ .bss.LcdCache  0x0000000000000000      0x1f8 obj/Release/n3310.o
+ .progmem.data.FontLookup
+                0x0000000000000000      0x320 obj/Release/n3310.o
  .text          0x0000000000000000        0x0 obj/Release/serial.o
  .bss           0x0000000000000000        0x0 obj/Release/serial.o
  .text.serialEnd
@@ -200,6 +221,8 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_divmodhi4.o)
  .text.libgcc.mul
                 0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_divmodhi4.o)
+ .text.libgcc.div
+                0x0000000000000000       0x26 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_divmodhi4.o)
  .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_divmodhi4.o)
  .text.libgcc.prologue
                 0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_divmodhi4.o)
@@ -258,6 +281,8 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_udivmodhi4.o)
  .text.libgcc.mul
                 0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_udivmodhi4.o)
+ .text.libgcc.div
+                0x0000000000000000       0x28 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_udivmodhi4.o)
  .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_udivmodhi4.o)
  .text.libgcc.prologue
                 0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_udivmodhi4.o)
@@ -344,10 +369,6 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 /usr/avr/lib/libc.a(strstr.o)
  .stab          0x0000000000000000      0x15c /usr/avr/lib/libc.a(strstr.o)
  .stabstr       0x0000000000000000       0x3f /usr/avr/lib/libc.a(strstr.o)
- .text          0x0000000000000000        0x0 /usr/avr/lib/libc.a(itoa.o)
- .bss           0x0000000000000000        0x0 /usr/avr/lib/libc.a(itoa.o)
- .stab          0x0000000000000000      0x1bc /usr/avr/lib/libc.a(itoa.o)
- .stabstr       0x0000000000000000       0x4d /usr/avr/lib/libc.a(itoa.o)
  .text          0x0000000000000000        0x0 /usr/avr/lib/libc.a(sprintf.o)
  .bss           0x0000000000000000        0x0 /usr/avr/lib/libc.a(sprintf.o)
  .stab          0x0000000000000000      0x54c /usr/avr/lib/libc.a(sprintf.o)
@@ -426,10 +447,6 @@ Discarded input sections
  .stabstr       0x0000000000000000       0x40 /usr/avr/lib/libc.a(strnlen.o)
  .text.avr-libc
                 0x0000000000000000       0x18 /usr/avr/lib/libc.a(strnlen.o)
- .text          0x0000000000000000        0x0 /usr/avr/lib/libc.a(strrev.o)
- .bss           0x0000000000000000        0x0 /usr/avr/lib/libc.a(strrev.o)
- .stab          0x0000000000000000       0xe4 /usr/avr/lib/libc.a(strrev.o)
- .stabstr       0x0000000000000000       0x3f /usr/avr/lib/libc.a(strrev.o)
  .text          0x0000000000000000        0x0 /usr/avr/lib/libc.a(fputc.o)
  .bss           0x0000000000000000        0x0 /usr/avr/lib/libc.a(fputc.o)
  .stab          0x0000000000000000      0x534 /usr/avr/lib/libc.a(fputc.o)
@@ -694,86 +711,76 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000     0x13c8
+.text           0x0000000000000000      0xd4c
  *(.vectors)
  .vectors       0x0000000000000000       0x34 /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
                 0x0000000000000000                __vectors
                 0x0000000000000000                __vector_default
  *(.vectors)
  *(.progmem.gcc*)
- *(.progmem*)
- .progmem.data.__c.2378
-                0x0000000000000034        0xb obj/Release/gsm.o
- .progmem.data.__c.2376
-                0x000000000000003f        0xb obj/Release/gsm.o
- .progmem.data.__c.2374
-                0x000000000000004a        0x6 obj/Release/gsm.o
- .progmem.data.__c.2365
-                0x0000000000000050        0x4 obj/Release/gsm.o
- .progmem.data.__c.2404
-                0x0000000000000054        0x5 obj/Release/main.o
- .progmem.data.__c.2392
-                0x0000000000000059        0x7 obj/Release/main.o
- .progmem.data.__c.2389
-                0x0000000000000060        0xa obj/Release/main.o
- .progmem.data.__c.2387
-                0x000000000000006a        0x8 obj/Release/main.o
- .progmem.data.__c.2385
-                0x0000000000000072        0xe obj/Release/main.o
- .progmem.data.__c.2383
-                0x0000000000000080        0x8 obj/Release/main.o
- .progmem.data.__c.2379
-                0x0000000000000088       0x11 obj/Release/main.o
- .progmem.data.__c.2377
-                0x0000000000000099        0xa obj/Release/main.o
- .progmem.data.__c.2372
-                0x00000000000000a3        0x2 obj/Release/main.o
- .progmem.data.__c.2370
-                0x00000000000000a5        0x4 obj/Release/main.o
- .progmem.data.__c.2368
-                0x00000000000000a9        0x2 obj/Release/main.o
- .progmem.data.__c.2366
-                0x00000000000000ab       0x15 obj/Release/main.o
- .progmem.data.myTelephone
-                0x00000000000000c0        0xd obj/Release/main.o
-                0x00000000000000c0                myTelephone
- .progmem.data.FontLookup
-                0x00000000000000cd      0x320 obj/Release/n3310.o
-                0x00000000000003ee                . = ALIGN (0x2)
- *fill*         0x00000000000003ed        0x1 
-                0x00000000000003ee                __trampolines_start = .
+                0x0000000000000034                . = ALIGN (0x2)
+                0x0000000000000034                __trampolines_start = .
  *(.trampolines)
- .trampolines   0x00000000000003ee        0x0 linker stubs
+ .trampolines   0x0000000000000034        0x0 linker stubs
  *(.trampolines*)
-                0x00000000000003ee                __trampolines_end = .
+                0x0000000000000034                __trampolines_end = .
+ *(.progmem*)
+ .progmem.data.__c.2380
+                0x0000000000000034        0xb obj/Release/gsm.o
+ .progmem.data.__c.2378
+                0x000000000000003f        0xb obj/Release/gsm.o
+ .progmem.data.__c.2376
+                0x000000000000004a        0x6 obj/Release/gsm.o
+ .progmem.data.__c.2374
+                0x0000000000000050        0xc obj/Release/gsm.o
+ .progmem.data.__c.2365
+                0x000000000000005c        0x5 obj/Release/gsm.o
+ .progmem.data.__c.2433
+                0x0000000000000061        0x5 obj/Release/main.o
+ .progmem.data.__c.2419
+                0x0000000000000066       0x11 obj/Release/main.o
+ .progmem.data.__c.2417
+                0x0000000000000077        0xb obj/Release/main.o
+ .progmem.data.__c.2412
+                0x0000000000000082        0x2 obj/Release/main.o
+ .progmem.data.__c.2410
+                0x0000000000000084        0x4 obj/Release/main.o
+ .progmem.data.__c.2408
+                0x0000000000000088        0x2 obj/Release/main.o
+ .progmem.data.__c.2406
+                0x000000000000008a       0x15 obj/Release/main.o
+ .progmem.data.myTelephone
+                0x000000000000009f        0xd obj/Release/main.o
+                0x000000000000009f                myTelephone
+                0x00000000000000ac                . = ALIGN (0x2)
  *(.jumptables)
  *(.jumptables*)
  *(.lowtext)
  *(.lowtext*)
-                0x00000000000003ee                __ctors_start = .
+                0x00000000000000ac                __ctors_start = .
  *(.ctors)
-                0x00000000000003ee                __ctors_end = .
-                0x00000000000003ee                __dtors_start = .
+                0x00000000000000ac                __ctors_end = .
+                0x00000000000000ac                __dtors_start = .
  *(.dtors)
-                0x00000000000003ee                __dtors_end = .
+                0x00000000000000ac                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x00000000000003ee        0x0 /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
-                0x00000000000003ee                __init
+ .init0         0x00000000000000ac        0x0 /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
+                0x00000000000000ac                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x00000000000003ee        0xc /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
+ .init2         0x00000000000000ac        0xc /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x00000000000003fa       0x16 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_copy_data.o)
-                0x00000000000003fa                __do_copy_data
- .init4         0x0000000000000410       0x10 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_clear_bss.o)
-                0x0000000000000410                __do_clear_bss
+ .init4         0x00000000000000b8       0x16 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_copy_data.o)
+                0x00000000000000b8                __do_copy_data
+ .init4         0x00000000000000ce       0x10 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_clear_bss.o)
+                0x00000000000000ce                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -784,178 +791,159 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x0000000000000420        0x4 /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
+ .init9         0x00000000000000de        0x4 /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
  *(.init9)
  *(.text)
- .text          0x0000000000000424        0x2 /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
-                0x0000000000000424                __vector_22
-                0x0000000000000424                __vector_1
-                0x0000000000000424                __vector_24
-                0x0000000000000424                __vector_12
-                0x0000000000000424                __bad_interrupt
-                0x0000000000000424                __vector_6
-                0x0000000000000424                __vector_3
-                0x0000000000000424                __vector_23
-                0x0000000000000424                __vector_25
-                0x0000000000000424                __vector_11
-                0x0000000000000424                __vector_13
-                0x0000000000000424                __vector_17
-                0x0000000000000424                __vector_19
-                0x0000000000000424                __vector_7
-                0x0000000000000424                __vector_5
-                0x0000000000000424                __vector_4
-                0x0000000000000424                __vector_9
-                0x0000000000000424                __vector_2
-                0x0000000000000424                __vector_21
-                0x0000000000000424                __vector_15
-                0x0000000000000424                __vector_8
-                0x0000000000000424                __vector_14
-                0x0000000000000424                __vector_10
-                0x0000000000000424                __vector_20
-                0x0000000000000426                . = ALIGN (0x2)
+ .text          0x00000000000000e2        0x2 /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
+                0x00000000000000e2                __vector_22
+                0x00000000000000e2                __vector_1
+                0x00000000000000e2                __vector_24
+                0x00000000000000e2                __vector_12
+                0x00000000000000e2                __bad_interrupt
+                0x00000000000000e2                __vector_6
+                0x00000000000000e2                __vector_3
+                0x00000000000000e2                __vector_23
+                0x00000000000000e2                __vector_25
+                0x00000000000000e2                __vector_11
+                0x00000000000000e2                __vector_17
+                0x00000000000000e2                __vector_19
+                0x00000000000000e2                __vector_7
+                0x00000000000000e2                __vector_5
+                0x00000000000000e2                __vector_4
+                0x00000000000000e2                __vector_2
+                0x00000000000000e2                __vector_21
+                0x00000000000000e2                __vector_15
+                0x00000000000000e2                __vector_8
+                0x00000000000000e2                __vector_14
+                0x00000000000000e2                __vector_10
+                0x00000000000000e2                __vector_20
+                0x00000000000000e4                . = ALIGN (0x2)
  *(.text.*)
- .text.hex2bin  0x0000000000000426       0x1c obj/Release/gps.o
-                0x0000000000000426                hex2bin
+ .text.hex2bin  0x00000000000000e4       0x1c obj/Release/gps.o
+                0x00000000000000e4                hex2bin
  .text.check_crc
-                0x0000000000000442       0x4a obj/Release/gps.o
-                0x0000000000000442                check_crc
+                0x0000000000000100       0x4a obj/Release/gps.o
+                0x0000000000000100                check_crc
  .text.next_field
-                0x000000000000048c       0x18 obj/Release/gps.o
-                0x000000000000048c                next_field
+                0x000000000000014a       0x18 obj/Release/gps.o
+                0x000000000000014a                next_field
  .text.parseGPRMC
-                0x00000000000004a4       0xda obj/Release/gps.o
-                0x00000000000004a4                parseGPRMC
+                0x0000000000000162       0xde obj/Release/gps.o
+                0x0000000000000162                parseGPRMC
  .text.GSM_PowerOn
-                0x000000000000057e       0x2c obj/Release/gsm.o
-                0x000000000000057e                GSM_PowerOn
+                0x0000000000000240       0x2c obj/Release/gsm.o
+                0x0000000000000240                GSM_PowerOn
  .text.GSM_Test2
-                0x00000000000005aa       0x82 obj/Release/gsm.o
-                0x00000000000005aa                GSM_Test2
+                0x000000000000026c       0x82 obj/Release/gsm.o
+                0x000000000000026c                GSM_Test2
  .text.GSM_Init2
-                0x000000000000062c       0x4c obj/Release/gsm.o
-                0x000000000000062c                GSM_Init2
- .text.MakeURL  0x0000000000000678       0x52 obj/Release/main.o
-                0x0000000000000678                MakeURL
+                0x00000000000002ee       0x64 obj/Release/gsm.o
+                0x00000000000002ee                GSM_Init2
+ .text.__vector_9
+                0x0000000000000352       0x46 obj/Release/main.o
+                0x0000000000000352                __vector_9
+ .text.SetTimer1Mode
+                0x0000000000000398       0x32 obj/Release/main.o
+                0x0000000000000398                SetTimer1Mode
+ .text.SetTimer2Mode
+                0x00000000000003ca       0x2a obj/Release/main.o
+                0x00000000000003ca                SetTimer2Mode
+ .text.SetMode  0x00000000000003f4       0x5c obj/Release/main.o
+                0x00000000000003f4                SetMode
+ .text.__vector_13
+                0x0000000000000450       0x66 obj/Release/main.o
+                0x0000000000000450                __vector_13
+ .text.MakeURL  0x00000000000004b6       0x52 obj/Release/main.o
+                0x00000000000004b6                MakeURL
  .text.SendPosition
-                0x00000000000006ca       0x76 obj/Release/main.o
-                0x00000000000006ca                SendPosition
+                0x0000000000000508       0x76 obj/Release/main.o
+                0x0000000000000508                SendPosition
  .text.ProcessDisplay
-                0x0000000000000740       0xe0 obj/Release/main.o
-                0x0000000000000740                ProcessDisplay
- .text.main     0x0000000000000820      0x1d2 obj/Release/main.o
-                0x0000000000000820                main
- .text.LcdSend  0x00000000000009f2       0x1a obj/Release/n3310.o
- .text.LcdClear
-                0x0000000000000a0c       0x30 obj/Release/n3310.o
-                0x0000000000000a0c                LcdClear
- .text.LcdUpdate
-                0x0000000000000a3c       0xce obj/Release/n3310.o
-                0x0000000000000a3c                LcdUpdate
- .text.LcdInit  0x0000000000000b0a       0x48 obj/Release/n3310.o
-                0x0000000000000b0a                LcdInit
- .text.LcdGotoXYFont
-                0x0000000000000b52       0x36 obj/Release/n3310.o
-                0x0000000000000b52                LcdGotoXYFont
- .text.LcdChr   0x0000000000000b88      0x1cc obj/Release/n3310.o
-                0x0000000000000b88                LcdChr
- .text.LcdStr   0x0000000000000d54       0x44 obj/Release/n3310.o
-                0x0000000000000d54                LcdStr
- .text.LcdFStr  0x0000000000000d98       0x3c obj/Release/n3310.o
-                0x0000000000000d98                LcdFStr
- .text.shift    0x0000000000000dd4       0x46 obj/Release/serial.o
-                0x0000000000000dd4                shift
- .text.push     0x0000000000000e1a       0x42 obj/Release/serial.o
-                0x0000000000000e1a                push
+                0x000000000000057e       0x10 obj/Release/main.o
+                0x000000000000057e                ProcessDisplay
+ .text.main     0x000000000000058e      0x282 obj/Release/main.o
+                0x000000000000058e                main
+ .text.shift    0x0000000000000810       0x46 obj/Release/serial.o
+                0x0000000000000810                shift
+ .text.push     0x0000000000000856       0x42 obj/Release/serial.o
+                0x0000000000000856                push
  .text.__vector_18
-                0x0000000000000e5c       0x4e obj/Release/serial.o
-                0x0000000000000e5c                __vector_18
+                0x0000000000000898       0x4e obj/Release/serial.o
+                0x0000000000000898                __vector_18
  .text.serialAvailable
-                0x0000000000000eaa        0x6 obj/Release/serial.o
-                0x0000000000000eaa                serialAvailable
+                0x00000000000008e6        0x6 obj/Release/serial.o
+                0x00000000000008e6                serialAvailable
  .text.serialInit
-                0x0000000000000eb0       0x24 obj/Release/serial.o
-                0x0000000000000eb0                serialInit
+                0x00000000000008ec       0x24 obj/Release/serial.o
+                0x00000000000008ec                serialInit
  .text.serialLast
-                0x0000000000000ed4       0x12 obj/Release/serial.o
-                0x0000000000000ed4                serialLast
+                0x0000000000000910       0x12 obj/Release/serial.o
+                0x0000000000000910                serialLast
  .text.serialReadUntil
-                0x0000000000000ee6       0xa2 obj/Release/serial.o
-                0x0000000000000ee6                serialReadUntil
+                0x0000000000000922       0xa2 obj/Release/serial.o
+                0x0000000000000922                serialReadUntil
  .text.serialClearBuffer
-                0x0000000000000f88        0x6 obj/Release/serial.o
-                0x0000000000000f88                serialClearBuffer
+                0x00000000000009c4        0x6 obj/Release/serial.o
+                0x00000000000009c4                serialClearBuffer
  .text.__vector_16
-                0x0000000000000f8e      0x156 obj/Release/softUart.o
-                0x0000000000000f8e                __vector_16
+                0x00000000000009ca      0x156 obj/Release/softUart.o
+                0x00000000000009ca                __vector_16
  .text.SUART_Init
-                0x00000000000010e4       0x2c obj/Release/softUart.o
-                0x00000000000010e4                SUART_Init
+                0x0000000000000b20       0x2c obj/Release/softUart.o
+                0x0000000000000b20                SUART_Init
  .text.SUART_GetChar
-                0x0000000000001110       0x38 obj/Release/softUart.o
-                0x0000000000001110                SUART_GetChar
+                0x0000000000000b4c       0x38 obj/Release/softUart.o
+                0x0000000000000b4c                SUART_GetChar
  .text.SUART_FlushInBuf
-                0x0000000000001148        0xa obj/Release/softUart.o
-                0x0000000000001148                SUART_FlushInBuf
+                0x0000000000000b84        0xa obj/Release/softUart.o
+                0x0000000000000b84                SUART_FlushInBuf
  .text.SUART_Kbhit
-                0x0000000000001152       0x12 obj/Release/softUart.o
-                0x0000000000001152                SUART_Kbhit
+                0x0000000000000b8e       0x12 obj/Release/softUart.o
+                0x0000000000000b8e                SUART_Kbhit
  .text.SUART_PutChar
-                0x0000000000001164       0x2a obj/Release/softUart.o
-                0x0000000000001164                SUART_PutChar
+                0x0000000000000ba0       0x2a obj/Release/softUart.o
+                0x0000000000000ba0                SUART_PutChar
  .text.SUART_PutStr
-                0x000000000000118e       0x1c obj/Release/softUart.o
-                0x000000000000118e                SUART_PutStr
+                0x0000000000000bca       0x1c obj/Release/softUart.o
+                0x0000000000000bca                SUART_PutStr
  .text.SUART_PutStrFl
-                0x00000000000011aa       0x20 obj/Release/softUart.o
-                0x00000000000011aa                SUART_PutStrFl
- .text.libgcc.div
-                0x00000000000011ca       0x26 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_divmodhi4.o)
-                0x00000000000011ca                __divmodhi4
-                0x00000000000011ca                _div
- .text.libgcc.div
-                0x00000000000011f0       0x28 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_udivmodhi4.o)
-                0x00000000000011f0                __udivmodhi4
+                0x0000000000000be6       0x20 obj/Release/softUart.o
+                0x0000000000000be6                SUART_PutStrFl
  .text.avr-libc
-                0x0000000000001218       0x1c /usr/avr/lib/libc.a(strcat_P.o)
-                0x0000000000001218                strcat_P
+                0x0000000000000c06       0x1c /usr/avr/lib/libc.a(strcat_P.o)
+                0x0000000000000c06                strcat_P
  .text.avr-libc
-                0x0000000000001234       0x18 /usr/avr/lib/libc.a(strcmp_P.o)
-                0x0000000000001234                strcmp_P
+                0x0000000000000c22       0x18 /usr/avr/lib/libc.a(strcmp_P.o)
+                0x0000000000000c22                strcmp_P
  .text.avr-libc
-                0x000000000000124c       0x14 /usr/avr/lib/libc.a(strcpy_P.o)
-                0x000000000000124c                strcpy_P
+                0x0000000000000c3a       0x14 /usr/avr/lib/libc.a(strcpy_P.o)
+                0x0000000000000c3a                strcpy_P
  .text.avr-libc
-                0x0000000000001260       0x16 /usr/avr/lib/libc.a(memcpy.o)
-                0x0000000000001260                memcpy
+                0x0000000000000c4e       0x16 /usr/avr/lib/libc.a(memcpy.o)
+                0x0000000000000c4e                memcpy
  .text.avr-libc
-                0x0000000000001276       0x1a /usr/avr/lib/libc.a(strcat.o)
-                0x0000000000001276                strcat
+                0x0000000000000c64       0x1a /usr/avr/lib/libc.a(strcat.o)
+                0x0000000000000c64                strcat
  .text.avr-libc
-                0x0000000000001290       0x1a /usr/avr/lib/libc.a(strchr.o)
-                0x0000000000001290                strchr
+                0x0000000000000c7e       0x1a /usr/avr/lib/libc.a(strchr.o)
+                0x0000000000000c7e                strchr
  .text.avr-libc
-                0x00000000000012aa       0x2e /usr/avr/lib/libc.a(strlcpy.o)
-                0x00000000000012aa                strlcpy
+                0x0000000000000c98       0x2e /usr/avr/lib/libc.a(strlcpy.o)
+                0x0000000000000c98                strlcpy
  .text.avr-libc
-                0x00000000000012d8       0x24 /usr/avr/lib/libc.a(strncat.o)
-                0x00000000000012d8                strncat
+                0x0000000000000cc6       0x24 /usr/avr/lib/libc.a(strncat.o)
+                0x0000000000000cc6                strncat
  .text.avr-libc
-                0x00000000000012fc       0x20 /usr/avr/lib/libc.a(strncmp.o)
-                0x00000000000012fc                strncmp
+                0x0000000000000cea       0x20 /usr/avr/lib/libc.a(strncmp.o)
+                0x0000000000000cea                strncmp
  .text.avr-libc
-                0x000000000000131c       0x3e /usr/avr/lib/libc.a(strstr.o)
-                0x000000000000131c                strstr
- .text.avr-libc
-                0x000000000000135a       0x46 /usr/avr/lib/libc.a(itoa.o)
-                0x000000000000135a                itoa
- .text.avr-libc
-                0x00000000000013a0       0x24 /usr/avr/lib/libc.a(strrev.o)
-                0x00000000000013a0                strrev
-                0x00000000000013c4                . = ALIGN (0x2)
+                0x0000000000000d0a       0x3e /usr/avr/lib/libc.a(strstr.o)
+                0x0000000000000d0a                strstr
+                0x0000000000000d48                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000000000013c4        0x0 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_exit.o)
-                0x00000000000013c4                exit
-                0x00000000000013c4                _exit
+ .fini9         0x0000000000000d48        0x0 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_exit.o)
+                0x0000000000000d48                exit
+                0x0000000000000d48                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -974,11 +962,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000000000013c4        0x4 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_exit.o)
+ .fini0         0x0000000000000d48        0x4 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_exit.o)
  *(.fini0)
-                0x00000000000013c8                _etext = .
+                0x0000000000000d4c                _etext = .
 
-.data           0x0000000000800100       0x1c load address 0x00000000000013c8
+.data           0x0000000000800100       0x2c load address 0x0000000000000d4c
                 0x0000000000800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
@@ -1009,7 +997,6 @@ END GROUP
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(strncat.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(strncmp.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(strstr.o)
- .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(itoa.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(sprintf.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(cmpsf2.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(floatsisf.o)
@@ -1023,7 +1010,6 @@ END GROUP
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(cty_isfalse.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(strnlen_P.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(strnlen.o)
- .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(strrev.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(fputc.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(ultoa_invert.o)
  .data          0x0000000000800100        0x0 /usr/avr/lib/libc.a(fp_inf.o)
@@ -1040,84 +1026,88 @@ END GROUP
  .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_umulhisi3.o)
  .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_muldi3_6.o)
  *(.data*)
+ .data.currentMode
+                0x0000000000800100        0x1 obj/Release/main.o
+                0x0000000000800100                currentMode
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x0000000000800100        0x6 obj/Release/gps.o
+                0x0000000000800101        0x6 obj/Release/gps.o
  .rodata.str1.1
-                0x0000000000800106        0x7 obj/Release/gsm.o
+                0x0000000000800107        0x7 obj/Release/gsm.o
  .rodata.str1.1
-                0x000000000080010d        0xf obj/Release/main.o
+                0x000000000080010e       0x1d obj/Release/main.o
  *(.gnu.linkonce.d*)
-                0x000000000080011c                . = ALIGN (0x2)
-                0x000000000080011c                _edata = .
-                0x000000000080011c                PROVIDE (__data_end, .)
+                0x000000000080012c                . = ALIGN (0x2)
+ *fill*         0x000000000080012b        0x1 
+                0x000000000080012c                _edata = .
+                0x000000000080012c                PROVIDE (__data_end, .)
 
-.bss            0x000000000080011c      0x365
-                0x000000000080011c                PROVIDE (__bss_start, .)
+.bss            0x000000000080012c      0x16b
+                0x000000000080012c                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.gpsBufCnt
-                0x000000000080011c        0x1 obj/Release/main.o
- .bss.gpsBuf    0x000000000080011d       0x50 obj/Release/main.o
- .bss.cycles    0x000000000080016d        0x2 obj/Release/main.o
-                0x000000000080016d                cycles
- .bss.gsm_ok    0x000000000080016f        0x1 obj/Release/main.o
-                0x000000000080016f                gsm_ok
+                0x000000000080012c        0x1 obj/Release/main.o
+ .bss.gpsBuf    0x000000000080012d       0x50 obj/Release/main.o
+ .bss.cycles    0x000000000080017d        0x2 obj/Release/main.o
+                0x000000000080017d                cycles
+ .bss.gsm_ok    0x000000000080017f        0x1 obj/Release/main.o
+                0x000000000080017f                gsm_ok
  .bss.msg_counter
-                0x0000000000800170        0x1 obj/Release/main.o
-                0x0000000000800170                msg_counter
- .bss.UpdateLcd
-                0x0000000000800171        0x1 obj/Release/n3310.o
- .bss.LcdCacheIdx
-                0x0000000000800172        0x2 obj/Release/n3310.o
- .bss.HiWaterMark
-                0x0000000000800174        0x2 obj/Release/n3310.o
- .bss.LoWaterMark
-                0x0000000000800176        0x2 obj/Release/n3310.o
- .bss.LcdCache  0x0000000000800178      0x1f8 obj/Release/n3310.o
+                0x0000000000800180        0x1 obj/Release/main.o
+                0x0000000000800180                msg_counter
+ .bss.needToSendSms
+                0x0000000000800181        0x1 obj/Release/main.o
+                0x0000000000800181                needToSendSms
+ .bss.timer2_ovfs
+                0x0000000000800182        0x2 obj/Release/main.o
+                0x0000000000800182                timer2_ovfs
+ .bss.timer1_ovfs
+                0x0000000000800184        0x2 obj/Release/main.o
+                0x0000000000800184                timer1_ovfs
  .bss.internal_rx_buffer.1820
-                0x0000000000800370        0x2 obj/Release/softUart.o
+                0x0000000000800186        0x2 obj/Release/softUart.o
  .bss.internal_tx_buffer
-                0x0000000000800372        0x2 obj/Release/softUart.o
+                0x0000000000800188        0x2 obj/Release/softUart.o
  .bss.bits_left_in_tx
-                0x0000000000800374        0x1 obj/Release/softUart.o
+                0x000000000080018a        0x1 obj/Release/softUart.o
  .bss.timer_tx_ctr
-                0x0000000000800375        0x1 obj/Release/softUart.o
+                0x000000000080018b        0x1 obj/Release/softUart.o
  .bss.flag_tx_busy
-                0x0000000000800376        0x1 obj/Release/softUart.o
+                0x000000000080018c        0x1 obj/Release/softUart.o
  .bss.bits_left_in_rx
-                0x0000000000800377        0x1 obj/Release/softUart.o
+                0x000000000080018d        0x1 obj/Release/softUart.o
  .bss.timer_rx_ctr
-                0x0000000000800378        0x1 obj/Release/softUart.o
- .bss.rx_mask   0x0000000000800379        0x1 obj/Release/softUart.o
+                0x000000000080018e        0x1 obj/Release/softUart.o
+ .bss.rx_mask   0x000000000080018f        0x1 obj/Release/softUart.o
  .bss.flag_rx_off
-                0x000000000080037a        0x1 obj/Release/softUart.o
+                0x0000000000800190        0x1 obj/Release/softUart.o
  .bss.flag_rx_waiting_for_stop_bit
-                0x000000000080037b        0x1 obj/Release/softUart.o
+                0x0000000000800191        0x1 obj/Release/softUart.o
  .bss.flag_rx_ready
-                0x000000000080037c        0x1 obj/Release/softUart.o
- .bss.qout      0x000000000080037d        0x1 obj/Release/softUart.o
- .bss.qin       0x000000000080037e        0x1 obj/Release/softUart.o
- .bss.inbuf     0x000000000080037f       0x80 obj/Release/softUart.o
+                0x0000000000800192        0x1 obj/Release/softUart.o
+ .bss.qout      0x0000000000800193        0x1 obj/Release/softUart.o
+ .bss.qin       0x0000000000800194        0x1 obj/Release/softUart.o
+ .bss.inbuf     0x0000000000800195       0x80 obj/Release/softUart.o
  *(COMMON)
- COMMON         0x00000000008003ff       0x25 obj/Release/gps.o
-                0x00000000008003ff                position
- COMMON         0x0000000000800424       0x5d obj/Release/gsm.o
-                0x0000000000800424                _buffer
-                0x000000000080047e                _serial_initialized
-                0x000000000080047f                _buffer_length
-                0x0000000000800480                lastChar
-                0x0000000000800481                PROVIDE (__bss_end, .)
-                0x00000000000013c8                __data_load_start = LOADADDR (.data)
-                0x00000000000013e4                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0000000000800215       0x25 obj/Release/gps.o
+                0x0000000000800215                position
+ COMMON         0x000000000080023a       0x5d obj/Release/gsm.o
+                0x000000000080023a                _buffer
+                0x0000000000800294                _serial_initialized
+                0x0000000000800295                _buffer_length
+                0x0000000000800296                lastChar
+                0x0000000000800297                PROVIDE (__bss_end, .)
+                0x0000000000000d4c                __data_load_start = LOADADDR (.data)
+                0x0000000000000d78                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0000000000800481        0x0
-                0x0000000000800481                PROVIDE (__noinit_start, .)
+.noinit         0x0000000000800297        0x0
+                0x0000000000800297                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x0000000000800481                PROVIDE (__noinit_end, .)
-                0x0000000000800481                _end = .
-                0x0000000000800481                PROVIDE (__heap_start, .)
+                0x0000000000800297                PROVIDE (__noinit_end, .)
+                0x0000000000800297                _end = .
+                0x0000000000800297                PROVIDE (__heap_start, .)
 
 .eeprom         0x0000000000810000        0x0
  *(.eeprom*)
@@ -1172,6 +1162,9 @@ END GROUP
  .comment       0x0000000000000000       0x12 /usr/avr/lib/libc.a(dtoa_prf.o)
  .comment       0x0000000000000000       0x12 /usr/avr/lib/libc.a(fputc.o)
 
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
 .debug
  *(.debug)
 
@@ -1191,14 +1184,13 @@ END GROUP
  *(.debug_pubnames)
 
 .debug_info
- *(.debug_info)
- *(.gnu.linkonce.wi.*)
+ *(.debug_info .gnu.linkonce.wi.*)
 
 .debug_abbrev
  *(.debug_abbrev)
 
 .debug_line
- *(.debug_line)
+ *(.debug_line .debug_line.* .debug_line_end)
 
 .debug_frame
  *(.debug_frame)
@@ -1211,6 +1203,18 @@ END GROUP
 
 .debug_macinfo
  *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
 
 .debug_pubtypes
  *(.debug_pubtypes)
@@ -1226,6 +1230,8 @@ LOAD linker stubs
 Cross Reference Table
 
 Symbol                                            File
+GPS_OFF                                           obj/Release/main.o
+GPS_ON                                            obj/Release/main.o
 GSM_Init                                          obj/Release/gsm.o
 GSM_Init2                                         obj/Release/gsm.o
                                                   obj/Release/main.o
@@ -1238,26 +1244,19 @@ GSM_WaitResponse                                  obj/Release/gsm.o
 GSM_WaitResponse2                                 obj/Release/gsm.o
 LcdBars                                           obj/Release/n3310.o
 LcdChr                                            obj/Release/n3310.o
-                                                  obj/Release/main.o
 LcdCircle                                         obj/Release/n3310.o
 LcdClear                                          obj/Release/n3310.o
-                                                  obj/Release/main.o
 LcdContrast                                       obj/Release/n3310.o
 LcdFStr                                           obj/Release/n3310.o
-                                                  obj/Release/main.o
 LcdGotoXYFont                                     obj/Release/n3310.o
-                                                  obj/Release/main.o
 LcdImage                                          obj/Release/n3310.o
 LcdInit                                           obj/Release/n3310.o
-                                                  obj/Release/main.o
 LcdLine                                           obj/Release/n3310.o
 LcdPixel                                          obj/Release/n3310.o
 LcdRect                                           obj/Release/n3310.o
 LcdSingleBar                                      obj/Release/n3310.o
 LcdStr                                            obj/Release/n3310.o
-                                                  obj/Release/main.o
 LcdUpdate                                         obj/Release/n3310.o
-                                                  obj/Release/main.o
 MakeURL                                           obj/Release/main.o
 ProcessDisplay                                    obj/Release/main.o
 ProcessGPS                                        obj/Release/main.o
@@ -1282,6 +1281,9 @@ SUART_PutStrFl                                    obj/Release/softUart.o
 SUART_TurnRxOff                                   obj/Release/softUart.o
 SUART_TurnRxOn                                    obj/Release/softUart.o
 SendPosition                                      obj/Release/main.o
+SetMode                                           obj/Release/main.o
+SetTimer1Mode                                     obj/Release/main.o
+SetTimer2Mode                                     obj/Release/main.o
 __bad_interrupt                                   /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
 __bss_end                                         /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_clear_bss.o)
 __bss_start                                       /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_clear_bss.o)
@@ -1358,7 +1360,6 @@ __prologue_saves__                                /usr/lib/gcc/avr/4.8.2/avr4/li
                                                   /usr/avr/lib/libc.a(strtod.o)
 __stack                                           /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
 __udivmodhi4                                      /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_udivmodhi4.o)
-                                                  /usr/avr/lib/libc.a(itoa.o)
                                                   /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_divmodhi4.o)
 __udivmodsi4                                      /usr/lib/gcc/avr/4.8.2/avr4/libgcc.a(_udivmodsi4.o)
                                                   /usr/avr/lib/libc.a(strtol.o)
@@ -1374,7 +1375,8 @@ __vector_1                                        /usr/lib/gcc/avr/4.8.2/../../.
 __vector_10                                       /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
 __vector_11                                       /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
 __vector_12                                       /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
-__vector_13                                       /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
+__vector_13                                       obj/Release/main.o
+                                                  /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
 __vector_14                                       /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
 __vector_15                                       /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
 __vector_16                                       obj/Release/softUart.o
@@ -1396,7 +1398,8 @@ __vector_5                                        /usr/lib/gcc/avr/4.8.2/../../.
 __vector_6                                        /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
 __vector_7                                        /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
 __vector_8                                        /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
-__vector_9                                        /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
+__vector_9                                        obj/Release/main.o
+                                                  /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
 __vector_default                                  /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
 __vectors                                         /usr/lib/gcc/avr/4.8.2/../../../../avr/lib/avr4/crtm88p.o
 _buffer                                           obj/Release/serial.o
@@ -1411,6 +1414,7 @@ _serial_initialized                               obj/Release/serial.o
                                                   obj/Release/main.o
                                                   obj/Release/gsm.o
 check_crc                                         obj/Release/gps.o
+currentMode                                       obj/Release/main.o
 cycles                                            obj/Release/main.o
 dtoa_prf                                          /usr/avr/lib/libc.a(dtoa_prf.o)
                                                   /usr/avr/lib/libc.a(dtostrf.o)
@@ -1429,8 +1433,6 @@ hex2bin                                           obj/Release/gps.o
 isspace                                           /usr/avr/lib/libc.a(isspace.o)
                                                   /usr/avr/lib/libc.a(strtol.o)
                                                   /usr/avr/lib/libc.a(strtod.o)
-itoa                                              /usr/avr/lib/libc.a(itoa.o)
-                                                  obj/Release/main.o
 lastChar                                          obj/Release/serial.o
                                                   obj/Release/main.o
                                                   obj/Release/gsm.o
@@ -1442,6 +1444,7 @@ memcpy_P                                          /usr/avr/lib/libc.a(memcpy_P.o
                                                   obj/Release/n3310.o
 msg_counter                                       obj/Release/main.o
 myTelephone                                       obj/Release/main.o
+needToSendSms                                     obj/Release/main.o
 next_field                                        obj/Release/gps.o
 parseGPRMC                                        obj/Release/gps.o
                                                   obj/Release/main.o
@@ -1506,8 +1509,6 @@ strnlen                                           /usr/avr/lib/libc.a(strnlen.o)
                                                   /usr/avr/lib/libc.a(vfprintf_std.o)
 strnlen_P                                         /usr/avr/lib/libc.a(strnlen_P.o)
                                                   /usr/avr/lib/libc.a(vfprintf_std.o)
-strrev                                            /usr/avr/lib/libc.a(strrev.o)
-                                                  /usr/avr/lib/libc.a(itoa.o)
 strstr                                            /usr/avr/lib/libc.a(strstr.o)
                                                   obj/Release/main.o
                                                   obj/Release/gsm.o
@@ -1515,5 +1516,7 @@ strtod                                            /usr/avr/lib/libc.a(strtod.o)
                                                   obj/Release/serial.o
 strtol                                            /usr/avr/lib/libc.a(strtol.o)
                                                   obj/Release/serial.o
+timer1_ovfs                                       obj/Release/main.o
+timer2_ovfs                                       obj/Release/main.o
 vfprintf                                          /usr/avr/lib/libc.a(vfprintf_std.o)
                                                   /usr/avr/lib/libc.a(sprintf.o)

@@ -146,27 +146,6 @@ void SendSpeed()
     SUART_FlushInBuf();
 }
 
-void ProcessGPS()
-{
-    if(currentMode != IDLE_MODE)
-    {
-        if(serialAvailable())
-        {
-            gpsBufCnt = serialReadUntil(gpsBuf, GPSBUF_LENGTH, '\r');
-            gpsBuf[gpsBufCnt] = '\0';
-
-            if(parseGPRMC(gpsBuf, &position))
-            {
-                if (currentMode == UPDATE_MODE)
-                    SetMode(IDLE_MODE);
-
-            }
-            serialClearBuffer();
-        }
-    }
-}
-
-
 int main()
 {
     DDRD |= (1 << PD2); //управление питанием GPS

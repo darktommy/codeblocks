@@ -93,10 +93,10 @@ uint8_t parseGPRMC(char* buf, data* d)
 
     buf++;
 
-    if(strncmp(buf, "GPRMC", 5) != 0) return -1;
+    if(strncmp(buf, "GPRMC", 5) != 0) return 0;
 
     if(!check_crc(buf))
-        return -1;
+        return 0;
 
     buf = next_field(buf); //время
     buf = next_field(buf); //валидность
@@ -107,6 +107,7 @@ uint8_t parseGPRMC(char* buf, data* d)
         (*d).valid = 0;
     }
 
+    if (!(*d).valid) return 0;
 
     buf = next_field(buf);   //latitude
     if(*buf != ',')
@@ -145,6 +146,6 @@ uint8_t parseGPRMC(char* buf, data* d)
     buf = next_field(buf); //курс (?)
     buf = next_field(buf); //дата
     //дальше какаято фигня, нам оно не надо
-    return 0;
+    return 1;
 
 }

@@ -14,10 +14,26 @@
 
 #define POSITION_TOKEN "Pos"
 #define SPEED_TOKEN "Speed"
+#define TRACKMODEON_TOKEN "Track"
+#define TRACKMODEOFF_TOKEN "TrackOff"
+#define SPYMODEON_TOKEN "Spy"
+#define SPYMODEOFF_TOKEN "SpyOff"
+#define SLEEP_TOKEN "Off"
+
 #define GSMBUF_LENGTH 64
 #define GPSBUF_LENGTH 80
 #define TEL_LENGTH 15
 
+#define SPY_MODE 0 //gps не выключаем
+#define TRACK_MODE 1 //gps не выключаем + каждые 2 минуты отправляем координаты
+#define UPDATE_MODE 2 //gps не отключаем до первых актуальных данных, затем выкл. gps
+#define IDLE_MODE 3 //gps выкл
+
+uint8_t currentMode = IDLE_MODE; //режим работы устройства
+
+uint16_t timer1_ovfs = 0;
+uint16_t timer2_ovfs = 0;
+uint8_t needToSendSms = 0;
 
 data position;
 volatile uint8_t msg_counter=0;
@@ -26,6 +42,114 @@ volatile uint16_t cycles=0;
 const char myTelephone[] PROGMEM = "+79512962477";
 static char gpsBuf[GPSBUF_LENGTH];
 static uint8_t gpsBufCnt = 0;
+
+void SetMode(uint8_t mode);
+
+//таймер для отслеживания момента вкл/выкл GPS
+ISR(TIMER1_OVF_vect)
+{
+    timer1_ovfs++;
+    if(timer1_ovfs >= 57) //2 часа = 3444, 2 мин = 57
+    {
+        SetMode(UPDATE_MODE);
+        timer1_ovfs = 0;
+    }
+}
+
+//таймер для отслеживания момента отправки сообщений в режиме TRACK
+ISR(TIMER2_OVF_vect)
+{
+    timer2_ovfs++;
+    if(timer2_ovfs >= 3662)
+    {
+        needToSendSms = 1;
+        timer2_ovfs = 0;
+    }
+}
+
+void inline GPS_OFF()
+{
+    //TODO выключаем GPS
+    PORTB &= ~(1 << PB1);
+    PORTC &= ~(1 << PC3);
+}
+
+void inline GPS_ON()
+{
+    //TODO включаем GPS
+    PORTB |= (1 << PB1);
+    PORTC |= (1 << PC3);
+}
+
+void SetTimer1Mode(uint8_t mode) //1 - on, 0 - off
+{
+    switch (mode)
+    {
+    case 0:
+        TCCR1B = 0;
+        TCNT1 = 0;
+        break;
+    case 1:
+        TCNT1 = 0;
+        TIMSK1 = (1 << TOIE1);
+        TCCR1A = 0;
+        TCCR1B = (1 << CS12); //prescaler = 256
+        break;
+    }
+}
+
+void SetTimer2Mode(uint8_t mode) //1 - on, 0 - off
+{
+    switch (mode)
+    {
+    case 0:
+        TCCR2B = 0;
+        TCNT2 = 0;
+        break;
+    case 1:
+        TCNT2 = 0;
+        TIMSK2 = (1 << TOIE2);
+        TCCR2A = 0;
+        TCCR2B = (7 << CS20); //prescaler = 1024
+        break;
+    }
+}
+
+
+void SetMode(uint8_t mode)
+{
+    if(mode != currentMode)
+    {
+        cli();
+        switch (mode)
+        {
+        case IDLE_MODE:
+            GPS_OFF();
+            SetTimer1Mode(1);
+            SetTimer2Mode(0);
+            break;
+        case UPDATE_MODE:
+            GPS_ON();
+            SetTimer1Mode(0);
+            SetTimer2Mode(0);
+            break;
+        case SPY_MODE:
+            GPS_ON();
+            SetTimer1Mode(0);
+            SetTimer2Mode(0);
+            break;
+        case TRACK_MODE:
+            GPS_ON();
+            SetTimer1Mode(0);
+            SetTimer2Mode(1);
+            break;
+        }
+        currentMode = mode;
+        sei();
+    }
+
+}
+
 
 // сделать URL из координат
 void MakeURL(char *outstr)
@@ -44,7 +168,7 @@ void MakeURL(char *outstr)
 void SendPosition()
 {
     char url[60];
-    SUART_PutStrFl((char*)PSTR("AT+CMGS=\""));
+    SUART_PutStrFl((char*)PSTR("  AT+CMGS=\"")); //первый символ не читается, т.к. энергосберегающий режим
     SUART_PutStrFl((char*)myTelephone);
     SUART_PutChar('"');
     SUART_PutChar('\r');
@@ -65,13 +189,14 @@ void SendPosition()
 
 void ProcessDisplay()
 {
+    /*
     LcdClear();
 
     LcdGotoXYFont(0,0);
-    if(position.valid)
-        LcdFStr(FONT_1X, (const unsigned char*)PSTR("GPS: OK"));
+    if(currentMode != IDLE_MODE)
+        LcdFStr(FONT_1X, (const unsigned char*)PSTR("GPS: ON"));
     else
-        LcdFStr(FONT_1X, (const unsigned char*)PSTR("GPS: NOTVALID"));
+        LcdFStr(FONT_1X, (const unsigned char*)PSTR("GPS: OFF"));
 
 
     LcdGotoXYFont(0,1);
@@ -101,36 +226,66 @@ void ProcessDisplay()
     itoa(cycles, str, 10);
     LcdStr(FONT_1X, (byte*)str);
 
-    LcdUpdate();
+    LcdUpdate();*/
+
+/*
+    if(currentMode != IDLE_MODE)
+        PORTB |= (1 << PB0);
+    else
+        PORTB &= ~(1 << PB0);
+*/
+    if(needToSendSms)
+        PORTB |= (1 << PB0);
+    else
+        PORTB &= ~(1 << PB0);
+
 }
 
 void inline ProcessGPS()
 {
-    if(serialAvailable())
+    if(currentMode != IDLE_MODE)
     {
-        gpsBufCnt = serialReadUntil(gpsBuf, GPSBUF_LENGTH, '\r');
-        gpsBuf[gpsBufCnt] = '\0';
+        if(serialAvailable())
+        {
+            gpsBufCnt = serialReadUntil(gpsBuf, GPSBUF_LENGTH, '\r');
+            gpsBuf[gpsBufCnt] = '\0';
 
-        parseGPRMC(gpsBuf, &position);
-        serialClearBuffer();
+            if(parseGPRMC(gpsBuf, &position))
+            {
+            //TODO
+                if (needToSendSms)
+                {
+                    SendPosition();
+                    needToSendSms = 0;
+                }
+                if (currentMode == UPDATE_MODE)
+                    SetMode(IDLE_MODE);
+            }
+            serialClearBuffer();
 
+        }
     }
 }
+
+
 
 int main()
 {
 
     SUART_Init();
     serialInit(SPEED9600);
-    LcdInit();
+   // LcdInit();
+
+    DDRB = 0xff;
+    PORTB = 0xff;
 
     sei();
-
+/*
     LcdClear();
     LcdGotoXYFont(0,0);
     LcdChr(FONT_1X, '*');
     LcdUpdate();
-
+*/
     //try to Power-on GSM
     if(!(gsm_ok = GSM_Test2()))
     {
@@ -139,6 +294,10 @@ int main()
     }
     gsm_ok = GSM_Test2();
     GSM_Init2();
+
+    PORTB = 0x00;
+
+    SetMode(SPY_MODE);
 
     char gsmBuf[GPSBUF_LENGTH];
     uint8_t gsmBufCnt=0;
@@ -173,8 +332,11 @@ int main()
                         // проверка номера телефона.
                         if(strcmp_P( tel, myTelephone) == 0)//пришло от меня
                         {
-                            SendPosition();
+                            if (currentMode == IDLE_MODE)
+                                SetMode(UPDATE_MODE);
+                            needToSendSms = 1;
                             SUART_FlushInBuf();
+                            break;
                         }
 
                     }
@@ -203,9 +365,32 @@ int main()
                             }
                             if(strstr(gsmBuf, POSITION_TOKEN))
                             {
-                                SendPosition();
+                                if (currentMode == IDLE_MODE)
+                                    SetMode(UPDATE_MODE);
+                                needToSendSms = 1;
                                 SUART_FlushInBuf();
+                                break;
                             }
+                            else if (strstr(gsmBuf, SPYMODEON_TOKEN))
+                            {
+                                SetMode(SPY_MODE);
+                                SUART_FlushInBuf();
+                                break;
+                            }
+                            else if (strstr(gsmBuf, TRACKMODEON_TOKEN))
+                            {
+                                SetMode(TRACK_MODE);
+                                SUART_FlushInBuf();
+                                break;
+                            }
+
+                            else if (strstr(gsmBuf, SLEEP_TOKEN))
+                            {
+                                SetMode(IDLE_MODE);
+                                SUART_FlushInBuf();
+                                break;
+                            }
+
                         }
                     }
                 }
@@ -217,9 +402,17 @@ int main()
                 gsmBufCnt++;
             }
         }
-        //--------------- GSM  -------------------------------------
+        //--------------- GSM end -------------------------------------
+
         ProcessDisplay();
         cycles++;
+
+        if(cycles % 2 == 0)
+        {
+            PORTB |= (1 << PB3);
+            _delay_ms(100);
+            PORTB &= ~(1 << PB3);
+        }
     }
 
 

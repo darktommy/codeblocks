@@ -80,7 +80,7 @@ uint8_t GSM_WaitResponse2(char* expectedStr)
 
 uint8_t GSM_Test2()
 {
-    SUART_PutStrFl((char*)PSTR("AT\r"));
+    SUART_PutStrFl((char*)PSTR(" AT\r"));
     char buf[20];
     uint8_t buflen=0;
     _delay_ms(100);
@@ -102,6 +102,8 @@ uint8_t GSM_Test2()
 
 void GSM_Init2()
 {
+    SUART_PutStrFl((char*)PSTR("AT+CSCLK=2\r")); //sleep mode 2
+    _delay_ms(300);
     SUART_PutStrFl((char*)PSTR("ATE0\r")); //echo off
     _delay_ms(300);
     SUART_PutStrFl((char*)PSTR("AT+CMGF=1\r"));//text mode
