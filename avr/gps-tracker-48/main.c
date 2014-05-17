@@ -1,3 +1,13 @@
+/***************************************************************************
+******************* G P S  T r a c k e r ***********************************
+****************************************************************************
+******* AUTHOR: Max Chinnov (@mxmcff, cryke.x87@gmail.com) *****************
+******* MCU: Atmega48*******************************************************
+******* DATE: April, 2014 **************************************************
+****************************************************************************
+***************************************************************************/
+
+
 // В настройках проекта обязательно правильно укажите свою тактовую частоту
 #include <avr/io.h>
 #include <util/delay.h>
@@ -10,11 +20,6 @@
 #include "softUart.h"
 #include "gsm.h"
 #include "gps.h"
-
-#define POSITION_TOKEN "Pos"
-#define SPEED_TOKEN "Speed"
-#define SPYMODEON_TOKEN "Spy"
-#define SLEEP_TOKEN "Off"
 
 #define GSMBUF_LENGTH 80
 #define GPSBUF_LENGTH 80
@@ -42,7 +47,7 @@ static char gsmBuf[GPSBUF_LENGTH];
 volatile static uint8_t gsmBufCnt=0;
 
 
-//переводит систему в заданный режим
+/* переводит систему в заданный режим */
 void SetMode(uint8_t mode)
 {
     if(mode != currentMode)
@@ -70,18 +75,18 @@ void SetMode(uint8_t mode)
 
 }
 
-//таймер для отслеживания момента вкл/выкл GPS
+/* таймер для отслеживания момента вкл/выкл GPS */
 ISR(TIMER1_OVF_vect)
 {
     timer1_ovfs++;
-    if(timer1_ovfs >= 570) //2 мин = 570, 2 мин = 57
+    if(timer1_ovfs >= 570) //20 мин = 570, 2 мин = 57
     {
         SetMode(UPDATE_MODE);
         timer1_ovfs = 0;
     }
 }
 
-// сделать URL на googleMaps из координат и отправить
+/* сделать URL на googleMaps из координат и отправить */
 void SendURL()
 {
     char outstr[55];
@@ -108,7 +113,7 @@ void SendURL()
     SUART_PutChar(26);//Ctrl-Z
 }
 
-// отправить сообщение с координатами
+/* отправить сообщение с координатами */
 void SendPosition()
 {
     SUART_PutStrFl((char*)PSTR(" AT+CMGS=\"")); //1й символ не воспринимается gsm модулем, т.к. в энергосберег.режиме
@@ -131,6 +136,7 @@ void SendPosition()
     SUART_FlushInBuf();
 }
 
+/* отправить сообщение со значением скорости */
 void SendSpeed()
 {
     SUART_PutStrFl((char*)PSTR(" AT+CMGS=\"")); //1й символ не воспринимается gsm модулем, т.к. в энергосберег.режиме
@@ -174,7 +180,6 @@ int main()
     needToSendSpeed = 0;
 
     GSM_Init();
-    SUART_FlushInBuf();
 
     char volatile c;
     char *p1,*p2;
@@ -194,8 +199,7 @@ int main()
                 {
                     if (currentMode == UPDATE_MODE)
                         SetMode(IDLE_MODE);
-                    /* лучше бы отправлять сообщнения отсюда, но у меня почему-то не работает,
-                       фигня какаято. */
+                    /* лучше бы отправлять сообщнения отсюда, но у меня почему-то не работает :( */
                     /*
                     if(needToSendPos)
                     {
@@ -240,7 +244,7 @@ int main()
                 gsmBuf[gsmBufCnt] = '\0';
                 gsmBufCnt = 0;
 
-                if(strstr(gsmBuf, "+CLIP"))
+                if(strstr_P(gsmBuf, PSTR("+CLIP")))
                 {
                     p1 = strchr(gsmBuf, '"');
                     p2 = strchr(p1+1, '"');
@@ -257,7 +261,7 @@ int main()
                                 SetMode(UPDATE_MODE);
                             }
 
-                            SUART_PutStrFl((char*)PSTR("ATH\r"));
+                            SUART_PutStrFl((char*)PSTR(" ATH\r"));
                             _delay_ms(2000);
                             SUART_FlushInBuf();
                             break;
@@ -265,7 +269,7 @@ int main()
 
                     }
                 }
-                if(strstr(gsmBuf, "+CMT"))
+                if(strstr_P(gsmBuf, PSTR("+CMT")))
                 {
                     p1 = strchr(gsmBuf, '"');
                     p2 = strchr(p1+1, '"');
@@ -287,19 +291,19 @@ int main()
                                     break;
                                 }
                             }
-                            if (strstr(gsmBuf, SPYMODEON_TOKEN))
+                            if (strstr_P(gsmBuf, PSTR("Spy")))
                             {
                                 SetMode(SPY_MODE);
                                 SUART_FlushInBuf();
                                 break;
                             }
-                            else if (strstr(gsmBuf, SLEEP_TOKEN))
+                            else if (strstr_P(gsmBuf, PSTR("Off")))
                             {
                                 SetMode(IDLE_MODE);
                                 SUART_FlushInBuf();
                                 break;
                             }
-                            else if (strstr(gsmBuf, SPEED_TOKEN))
+                            else if (strstr_P(gsmBuf, PSTR("Speed")))
                             {
                                 needToSendSpeed = 1;
                                 if (currentMode == IDLE_MODE)

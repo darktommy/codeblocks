@@ -1,6 +1,7 @@
 
 #include "gsm.h"
 
+/* включает GSM модуль */
 void GSM_PowerOn()
 {
     POWERKEY_DDRX |= (1 << POWER_PIN);
@@ -27,6 +28,8 @@ uint8_t GSM_WaitResponse(char* expectedStr)
     return 0;
 }
 
+
+/* тест на доступность GSM-модуля */
 uint8_t GSM_Test()
 {
     SUART_PutStrFl((char*)PSTR(" AT\r"));
@@ -42,28 +45,32 @@ uint8_t GSM_Test()
 
     SUART_FlushInBuf();
 
-    if(strstr(buf,"OK") != NULL)
+    if(strstr_P(buf,PSTR("OK")) != NULL)
         return 1;
 
     return 0;
 
 }
 
+
+/* инициализация GSM */
 void GSM_Init()
 {
     SUART_PutStrFl((char*)PSTR(" ATE0\r")); //echo off
-    _delay_ms(1000);
+    _delay_ms(500);
     SUART_FlushInBuf();
 
     SUART_PutStrFl((char*)PSTR(" AT+CMGF=1\r"));//text mode
-    _delay_ms(1000);
+    _delay_ms(500);
     SUART_FlushInBuf();
 
     SUART_PutStrFl((char*)PSTR(" AT+CLIP=1\r")); //включает АОН
-    _delay_ms(1000);
+    _delay_ms(500);
+
+    SUART_PutStrFl((char*)PSTR(" AT+CSCLK=2\r")); //sleep mode 2
+    _delay_ms(500);
+
     SUART_FlushInBuf();
-    //SUART_PutStrFl((char*)PSTR(" AT+CSCLK=2\r")); //sleep mode 2
-    //_delay_ms(300);
 
 }
 

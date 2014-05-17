@@ -16,7 +16,7 @@ SetMode:
 	cp r24,r25
 	breq .L1
 /* #APP */
- ;  50 "main.c" 1
+ ;  45 "main.c" 1
 	cli
  ;  0 "" 2
 /* #NOAPP */
@@ -43,7 +43,7 @@ SetMode:
 .L3:
 	sts currentMode,r24
 /* #APP */
- ;  68 "main.c" 1
+ ;  63 "main.c" 1
 	sei
  ;  0 "" 2
 /* #NOAPP */
@@ -329,71 +329,6 @@ SendSpeed:
 	rcall SUART_FlushInBuf
 	ret
 	.size	SendSpeed, .-SendSpeed
-	.section	.text.ProcessGPS,"ax",@progbits
-.global	ProcessGPS
-	.type	ProcessGPS, @function
-ProcessGPS:
-/* prologue: function */
-/* frame size = 0 */
-/* stack size = 0 */
-.L__stack_usage = 0
-	lds r24,currentMode
-	cpi r24,lo8(3)
-	breq .L15
-	rcall serialAvailable
-	tst r24
-	breq .L15
-	ldi r20,lo8(13)
-	ldi r22,lo8(90)
-	ldi r24,lo8(gpsBuf)
-	ldi r25,hi8(gpsBuf)
-	rcall serialReadUntil
-	sts gpsBufCnt,r24
-	lds r30,gpsBufCnt
-	ldi r31,0
-	subi r30,lo8(-(gpsBuf))
-	sbci r31,hi8(-(gpsBuf))
-	st Z,__zero_reg__
-	ldi r22,lo8(position)
-	ldi r23,hi8(position)
-	ldi r24,lo8(gpsBuf)
-	ldi r25,hi8(gpsBuf)
-	rcall parseGPRMC
-	tst r24
-	breq .L17
-	lds r24,currentMode
-	cpi r24,lo8(2)
-	brne .L18
-	ldi r24,lo8(3)
-	rcall SetMode
-.L18:
-	lds r24,needToSendPos
-	tst r24
-	breq .L19
-	sts needToSendPos,__zero_reg__
-	rcall SendPosition
-.L19:
-	lds r24,needToSendSpeed
-	tst r24
-	breq .L17
-	sts needToSendSpeed,__zero_reg__
-	rcall SendSpeed
-.L17:
-	rcall serialClearBuffer
-.L15:
-	ret
-	.size	ProcessGPS, .-ProcessGPS
-	.section	.rodata.str1.1,"aMS",@progbits,1
-.LC0:
-	.string	"+CLIP"
-.LC1:
-	.string	"+CMT"
-.LC2:
-	.string	"Spy"
-.LC3:
-	.string	"Off"
-.LC4:
-	.string	"Speed"
 	.section	.text.main,"ax",@progbits
 .global	main
 	.type	main, @function
@@ -417,19 +352,19 @@ main:
 	ldi r24,lo8(51)
 	rcall serialInit
 /* #APP */
- ;  187 "main.c" 1
+ ;  151 "main.c" 1
 	sei
  ;  0 "" 2
 /* #NOAPP */
 	ldi r24,lo8(2)
 	rcall SetMode
 	ldi r17,lo8(3)
-.L22:
+.L17:
 	rcall GSM_Test
 	sts gsm_ok,r24
 	lds r24,gsm_ok
 	cpse r24,__zero_reg__
-	rjmp .L21
+	rjmp .L16
 	ldi r18,lo8(1599999)
 	ldi r24,hi8(1599999)
 	ldi r25,hlo8(1599999)
@@ -440,11 +375,11 @@ main:
 	rjmp .
 	nop
 	subi r17,lo8(-(-1))
-	brne .L22
-.L21:
+	brne .L17
+.L16:
 	lds r24,gsm_ok
 	cpse r24,__zero_reg__
-	rjmp .L23
+	rjmp .L18
 	rcall GSM_PowerOn
 	ldi r18,lo8(11199999)
 	ldi r24,hi8(11199999)
@@ -455,36 +390,85 @@ main:
 	brne 1b
 	rjmp .
 	nop
-.L23:
+.L18:
 	sts needToSendPos,__zero_reg__
 	sts needToSendSpeed,__zero_reg__
 	rcall GSM_Init
-	rcall SUART_FlushInBuf
 	clr r13
 	inc r13
-.L37:
-	rcall ProcessGPS
-	rjmp .L25
 .L36:
+	lds r24,currentMode
+	cpi r24,lo8(3)
+	breq .L20
+	rcall serialAvailable
+	tst r24
+	breq .L20
+	ldi r20,lo8(13)
+	ldi r22,lo8(80)
+	ldi r24,lo8(gpsBuf)
+	ldi r25,hi8(gpsBuf)
+	rcall serialReadUntil
+	sts gpsBufCnt,r24
+	lds r30,gpsBufCnt
+	ldi r31,0
+	subi r30,lo8(-(gpsBuf))
+	sbci r31,hi8(-(gpsBuf))
+	st Z,__zero_reg__
+	ldi r22,lo8(position)
+	ldi r23,hi8(position)
+	ldi r24,lo8(gpsBuf)
+	ldi r25,hi8(gpsBuf)
+	rcall parseGPRMC
+	tst r24
+	breq .L21
+	lds r24,currentMode
+	cpi r24,lo8(2)
+	brne .L21
+	ldi r24,lo8(3)
+	rcall SetMode
+.L21:
+	rcall serialClearBuffer
+.L20:
+	lds r24,needToSendPos
+	tst r24
+	breq .L22
+	lds r24,position
+	tst r24
+	breq .L22
+	sts needToSendPos,__zero_reg__
+	rcall SendPosition
+.L22:
+	lds r24,needToSendSpeed
+	tst r24
+	brne .+2
+	rjmp .L24
+	lds r24,position
+	tst r24
+	brne .+2
+	rjmp .L24
+	sts needToSendSpeed,__zero_reg__
+	rcall SendSpeed
+	rjmp .L24
+.L35:
 	rcall SUART_GetChar
 	std Y+1,r24
 	ldd r24,Y+1
 	cpi r24,lo8(10)
 	breq .+2
-	rjmp .L26
+	rjmp .L25
 	lds r30,gsmBufCnt
 	ldi r31,0
 	subi r30,lo8(-(gsmBuf))
 	sbci r31,hi8(-(gsmBuf))
 	st Z,__zero_reg__
 	sts gsmBufCnt,__zero_reg__
-	ldi r22,lo8(.LC0)
-	ldi r23,hi8(.LC0)
+	ldi r22,lo8(__c.2336)
+	ldi r23,hi8(__c.2336)
 	ldi r24,lo8(gsmBuf)
 	ldi r25,hi8(gsmBuf)
-	rcall strstr
+	rcall strstr_P
 	or r24,r25
-	breq .L27
+	breq .L26
 	ldi r22,lo8(34)
 	ldi r23,0
 	ldi r24,lo8(gsmBuf)
@@ -501,9 +485,9 @@ main:
 	rcall strchr
 	cp r16,__zero_reg__
 	cpc r17,__zero_reg__
-	breq .L27
+	breq .L26
 	sbiw r24,0
-	breq .L27
+	breq .L26
 	movw r20,r24
 	sub r20,r16
 	sbc r21,r17
@@ -517,20 +501,20 @@ main:
 	adiw r24,2
 	rcall strcmp_P
 	or r24,r25
-	brne .L27
+	brne .L26
 	sts needToSendPos,r13
 	lds r24,currentMode
 	cpi r24,lo8(3)
-	brne .L28
+	brne .L27
 	ldi r24,lo8(2)
 	rcall SetMode
-.L28:
+.L27:
 	ldi r24,lo8(__c.2338)
 	ldi r25,hi8(__c.2338)
 	rcall SUART_PutStrFl
-	ldi r24,lo8(2399999)
-	ldi r25,hi8(2399999)
-	ldi r18,hlo8(2399999)
+	ldi r24,lo8(3199999)
+	ldi r25,hi8(3199999)
+	ldi r18,hlo8(3199999)
 	1: subi r24,1
 	sbci r25,0
 	sbci r18,0
@@ -538,16 +522,16 @@ main:
 	rjmp .
 	nop
 	rcall SUART_FlushInBuf
-	rjmp .L37
-.L27:
-	ldi r22,lo8(.LC1)
-	ldi r23,hi8(.LC1)
+	rjmp .L36
+.L26:
+	ldi r22,lo8(__c.2341)
+	ldi r23,hi8(__c.2341)
 	ldi r24,lo8(gsmBuf)
 	ldi r25,hi8(gsmBuf)
-	rcall strstr
+	rcall strstr_P
 	or r24,r25
 	brne .+2
-	rjmp .L25
+	rjmp .L24
 	ldi r22,lo8(34)
 	ldi r23,0
 	ldi r24,lo8(gsmBuf)
@@ -565,10 +549,10 @@ main:
 	cp r16,__zero_reg__
 	cpc r17,__zero_reg__
 	brne .+2
-	rjmp .L25
+	rjmp .L24
 	sbiw r24,0
 	brne .+2
-	rjmp .L25
+	rjmp .L24
 	movw r20,r24
 	sub r20,r16
 	sbc r21,r17
@@ -583,9 +567,9 @@ main:
 	rcall strcmp_P
 	or r24,r25
 	breq .+2
-	rjmp .L25
+	rjmp .L24
 	sts gsmBufCnt,__zero_reg__
-.L32:
+.L31:
 	rcall SUART_GetChar
 	std Y+1,r24
 	lds r30,gsmBufCnt
@@ -599,53 +583,53 @@ main:
 	sts gsmBufCnt,r24
 	ldd r24,Y+1
 	cpi r24,lo8(10)
-	brne .L32
+	brne .L31
 	lds r30,gsmBufCnt
 	ldi r31,0
 	subi r30,lo8(-(gsmBuf))
 	sbci r31,hi8(-(gsmBuf))
 	st Z,__zero_reg__
-	ldi r22,lo8(.LC2)
-	ldi r23,hi8(.LC2)
+	ldi r22,lo8(__c.2345)
+	ldi r23,hi8(__c.2345)
 	ldi r24,lo8(gsmBuf)
 	ldi r25,hi8(gsmBuf)
-	rcall strstr
+	rcall strstr_P
 	or r24,r25
-	breq .L33
+	breq .L32
 	mov r24,r13
 	rcall SetMode
 	rcall SUART_FlushInBuf
-	rjmp .L37
-.L33:
-	ldi r22,lo8(.LC3)
-	ldi r23,hi8(.LC3)
+	rjmp .L36
+.L32:
+	ldi r22,lo8(__c.2347)
+	ldi r23,hi8(__c.2347)
 	ldi r24,lo8(gsmBuf)
 	ldi r25,hi8(gsmBuf)
-	rcall strstr
+	rcall strstr_P
 	or r24,r25
-	breq .L34
+	breq .L33
 	ldi r24,lo8(3)
 	rcall SetMode
 	rcall SUART_FlushInBuf
-	rjmp .L37
-.L34:
-	ldi r22,lo8(.LC4)
-	ldi r23,hi8(.LC4)
+	rjmp .L36
+.L33:
+	ldi r22,lo8(__c.2349)
+	ldi r23,hi8(__c.2349)
 	ldi r24,lo8(gsmBuf)
 	ldi r25,hi8(gsmBuf)
-	rcall strstr
+	rcall strstr_P
 	or r24,r25
-	breq .L25
+	breq .L24
 	sts needToSendSpeed,r13
 	lds r24,currentMode
 	cpi r24,lo8(3)
-	brne .L35
+	brne .L34
 	ldi r24,lo8(2)
 	rcall SetMode
-.L35:
-	ldi r25,lo8(2399999)
-	ldi r18,hi8(2399999)
-	ldi r24,hlo8(2399999)
+.L34:
+	ldi r25,lo8(3199999)
+	ldi r18,hi8(3199999)
+	ldi r24,hlo8(3199999)
 	1: subi r25,1
 	sbci r18,0
 	sbci r24,0
@@ -653,8 +637,8 @@ main:
 	rjmp .
 	nop
 	rcall SUART_FlushInBuf
-	rjmp .L37
-.L26:
+	rjmp .L36
+.L25:
 	lds r30,gsmBufCnt
 	ldd r24,Y+1
 	ldi r31,0
@@ -664,17 +648,42 @@ main:
 	lds r24,gsmBufCnt
 	subi r24,lo8(-(1))
 	sts gsmBufCnt,r24
-.L25:
+.L24:
 	rcall SUART_Kbhit
 	cpse r24,__zero_reg__
+	rjmp .L35
 	rjmp .L36
-	rjmp .L37
 	.size	main, .-main
+	.section	.progmem.data.__c.2349,"a",@progbits
+	.type	__c.2349, @object
+	.size	__c.2349, 6
+__c.2349:
+	.string	"Speed"
+	.section	.progmem.data.__c.2347,"a",@progbits
+	.type	__c.2347, @object
+	.size	__c.2347, 4
+__c.2347:
+	.string	"Off"
+	.section	.progmem.data.__c.2345,"a",@progbits
+	.type	__c.2345, @object
+	.size	__c.2345, 4
+__c.2345:
+	.string	"Spy"
+	.section	.progmem.data.__c.2341,"a",@progbits
+	.type	__c.2341, @object
+	.size	__c.2341, 5
+__c.2341:
+	.string	"+CMT"
 	.section	.progmem.data.__c.2338,"a",@progbits
 	.type	__c.2338, @object
-	.size	__c.2338, 5
+	.size	__c.2338, 6
 __c.2338:
-	.string	"ATH\r"
+	.string	" ATH\r"
+	.section	.progmem.data.__c.2336,"a",@progbits
+	.type	__c.2336, @object
+	.size	__c.2336, 6
+__c.2336:
+	.string	"+CLIP"
 	.section	.progmem.data.__c.2324,"a",@progbits
 	.type	__c.2324, @object
 	.size	__c.2324, 11
@@ -717,9 +726,9 @@ gsmBufCnt:
 	.zero	1
 	.section	.bss.gsmBuf,"aw",@nobits
 	.type	gsmBuf, @object
-	.size	gsmBuf, 90
+	.size	gsmBuf, 80
 gsmBuf:
-	.zero	90
+	.zero	80
 	.section	.bss.gpsBufCnt,"aw",@nobits
 	.type	gpsBufCnt, @object
 	.size	gpsBufCnt, 1
@@ -727,9 +736,9 @@ gpsBufCnt:
 	.zero	1
 	.section	.bss.gpsBuf,"aw",@nobits
 	.type	gpsBuf, @object
-	.size	gpsBuf, 90
+	.size	gpsBuf, 80
 gpsBuf:
-	.zero	90
+	.zero	80
 .global	myTelephone
 	.section	.progmem.data.myTelephone,"a",@progbits
 	.type	myTelephone, @object
@@ -775,8 +784,7 @@ currentMode:
 	.zero	1
 	.comm	lastChar,1,1
 	.comm	_buffer_length,1,1
-	.comm	_buffer,90,1
+	.comm	_buffer,81,1
 	.comm	_serial_initialized,1,1
 	.ident	"GCC: (GNU) 4.8.2"
-.global __do_copy_data
 .global __do_clear_bss

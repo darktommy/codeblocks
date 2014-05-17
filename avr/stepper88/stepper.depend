@@ -16,10 +16,10 @@
 1377899666 source:/home/max/codeblocks/avr/stepper/serial.c
 	"serial.h"
 
-1380237672 source:/home/max/codeblocks/avr/stepper88/serial.c
+1389431792 source:/home/max/codeblocks/avr/stepper88/serial.c
 	"serial.h"
 
-1380237884 /home/max/codeblocks/avr/stepper88/serial.h
+1389431792 /home/max/codeblocks/avr/stepper88/serial.h
 	<avr/io.h>
 	<avr/interrupt.h>
 	<util/delay.h>
@@ -28,4 +28,8 @@
 	<stdlib.h>
 	<ctype.h>
 	<stdio.h>
+
+1389431792 source:/home/max/codeblocks/avr/stepper88/main.c
+	<avr/io.h>
+	"serial.h"
 

@@ -1,12 +1,12 @@
 //***************************************************************************
 //
-//  Author(s)...: Pashgan    http://ChipEnable.Ru   
+//  Author(s)...: Pashgan    http://ChipEnable.Ru
 //
 //  Target(s)...: ATMega
 //
 //  Compiler....: IAR, GCC, CodeVision
 //
-//  Description.: файл для портирования проектов, исходников библиотек
+//  Description.: С„Р°Р№Р» РґР»СЏ РїРѕСЂС‚РёСЂРѕРІР°РЅРёСЏ РїСЂРѕРµРєС‚РѕРІ, РёСЃС…РѕРґРЅРёРєРѕРІ Р±РёР±Р»РёРѕС‚РµРє
 //
 //  Data........: 20.04.13
 //
@@ -23,7 +23,7 @@
 #include <inavr.h>
 #include <intrinsics.h>
 
-#define STRINGIFY(a) #a   
+#define STRINGIFY(a) #a
 #define ISR(vect) _Pragma(STRINGIFY(vector = vect))\
                   __interrupt void vect##_func(void)
 #define INLINE _Pragma(STRINGIFY(inline = forced))
@@ -51,11 +51,11 @@
 #define __enable_interrupt()     sei()
 #define __delay_cycles(var)      _delay_us((unsigned int)(var)/(F_CPU/1000000))
 
-#define __flash 
-#define read_byte_flash(x) pgm_read_byte(&(x)) 
-#define read_word_flash(x) pgm_read_word(&(x)) 
+#define __flash
+#define read_byte_flash(x) pgm_read_byte(&(x))
+#define read_word_flash(x) pgm_read_word(&(x))
 
-#define INLINE 
+#define INLINE
 #endif
 
 /*****************************************************************************/
@@ -75,7 +75,7 @@
 #define read_word_flash(x) (x)
 
 #define ISR(vect) interrupt [vect] void vect##_func(void)
-#define INLINE 
+#define INLINE
 #endif
 
 /*****************************************************************************/
