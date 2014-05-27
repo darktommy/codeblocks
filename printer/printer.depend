@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1401129733 source:/home/max/codeblocks/printer/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	<fcntl.h>
+	<errno.h>
+	<termios.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<string.h>
+	"rs232.h"
+
+1400877940 /home/max/codeblocks/printer/image.h
+
+1391160946 source:/home/max/codeblocks/printer/rs232.c
+	"rs232.h"
+
+1391160972 /home/max/codeblocks/printer/rs232.h
+	<stdio.h>
+	<string.h>
+	<termios.h>
+	<sys/ioctl.h>
+	<unistd.h>
+	<fcntl.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<limits.h>
+	<windows.h>
+
