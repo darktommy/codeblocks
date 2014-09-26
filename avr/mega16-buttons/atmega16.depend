@@ -1,0 +1,76 @@
+# depslib dependency file v1.0
+1378651207 source:/home/max/codeblocks/avr/atmega16/main.c
+	<avr/io.h>
+	<util/delay.h>
+	"serial.h"
+	"mirf.h"
+
+1377209882 /home/max/codeblocks/avr/atmega16/serial.h
+	<avr/io.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	<string.h>
+	<stdlib.h>
+	<ctype.h>
+	<stdio.h>
+
+1377210084 source:/home/max/codeblocks/avr/atmega16/serial.c
+	"serial.h"
+
+1377956976 source:/home/max/codeblocks/avr/atmega16/mirf.c
+	"mirf.h"
+	"nRF24L01.h"
+	"spi.h"
+	<avr/io.h>
+	<avr/interrupt.h>
+
+1377956609 /home/max/codeblocks/avr/atmega16/mirf.h
+	<avr/io.h>
+
+1377801634 /home/max/codeblocks/avr/atmega16/nRF24L01.h
+
+1377801610 /home/max/codeblocks/avr/atmega16/spi.h
+	<avr/io.h>
+
+1377957497 source:/home/max/codeblocks/avr/atmega16/spi.c
+	"spi.h"
+	<avr/io.h>
+	<avr/interrupt.h>
+
+1411680961 source:/home/max/codeblocks/avr/mega16-buttons/serial.c
+	"serial.h"
+
+1411680820 /home/max/codeblocks/avr/mega16-buttons/serial.h
+	<avr/io.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	<string.h>
+	<stdlib.h>
+	<ctype.h>
+	<stdio.h>
+	"xprintf.h"
+
+1411670044 source:/home/max/codeblocks/avr/mega16-buttons/buttons.c
+	"buttons.h"
+
+1411669810 /home/max/codeblocks/avr/mega16-buttons/buttons.h
+	<avr/io.h>
+	<util/delay.h>
+	"serial.h"
+
+1411738615 source:/home/max/codeblocks/avr/mega16-buttons/main.c
+	<avr/io.h>
+	<util/delay.h>
+	"serial.h"
+	"buttons.h"
+	<ctype.h>
+	"xprintf.h"
+
+1307557142 /home/max/codeblocks/avr/mega16-buttons/xprintf.h
+
+1307557140 source:/home/max/codeblocks/avr/mega16-buttons/xprintf.c
+	"xprintf.h"
+	<stdarg.h>
+
